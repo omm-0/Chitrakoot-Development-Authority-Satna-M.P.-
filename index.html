@@ -416,13 +416,21 @@
             transition: opacity 1.5s ease;
             background-size: cover;
             background-position: center;
+            transform: scale(1.0);
         }
-        .slide.active { opacity: 1; }
+        .slide.active {
+            opacity: 1;
+            animation: heroKenBurns 8s ease-out forwards;
+        }
+        @keyframes heroKenBurns {
+            0%   { transform: scale(1.05); }
+            100% { transform: scale(1.12); }
+        }
         
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(26,15,0,0.3) 0%, rgba(26,15,0,0.8) 100%);
+            background: linear-gradient(to bottom, rgba(26,15,0,0.25) 0%, rgba(26,15,0,0.55) 50%, rgba(26,15,0,0.75) 100%);
             z-index: 2;
         }
 
@@ -1165,14 +1173,14 @@
             <!-- Hero Slider Section -->
             <section class="hero">
                 <div class="hero-slides" id="heroSlides">
-                    <div class="slide active warm-filter" style="background-image: url('C1.png');">
-                        <div class="slide-caption">रामघाट मंदाकिनी आरती — The Divine Evening Aarti</div>
+                    <div class="slide active" style="background-image: url('C1.png');">
+                        <div class="slide-caption">रामघाट की पवित्र नौकाएँ — Sacred Boats on the Mandakini at Ramghat</div>
                     </div>
-                    <div class="slide warm-filter" style="background-image: url('C2.png');">
-                        <div class="slide-caption">कामदगिरि परिक्रमा — The Hill That Fulfills All Desires</div>
+                    <div class="slide" style="background-image: url('C2.png');">
+                        <div class="slide-caption">मंदाकिनी प्रपात — Where the Sacred Waters Cascade</div>
                     </div>
-                    <div class="slide warm-filter" style="background-image: url('C3.png');">
-                        <div class="slide-caption">पवित्र मंदाकिनी — The Sacred Mandakini River</div>
+                    <div class="slide" style="background-image: url('C3.png');">
+                        <div class="slide-caption">प्राचीन देवालय — The Ancient Temples of Chitrakoot Dham</div>
                     </div>
                 </div>
                 <div class="hero-overlay"></div>
