@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shri Chitrakoot Dham | The Sacred Land of Lord Rama</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           GLOBAL DESIGN SYSTEM & VARIABLES
+           DESIGN TOKENS
            ========================================================================== */
         :root {
             --color-primary: #C45A00;
@@ -22,13 +22,16 @@
             --color-secondary-light: #283593;
             --color-accent: #D4A017;
             --color-accent-light: #F0C040;
+            --color-accent-glow: #FFD966;
             --color-bg-cream: #FFF8E7;
             --color-bg-dark: #1A0F00;
+            --color-bg-darker: #0D0700;
             --color-bg-section: #FFF3E0;
             --color-text-dark: #2D1B00;
             --color-text-light: #F5E6D0;
             --color-text-muted: #6D4C20;
             --color-border: rgba(212, 160, 23, 0.25);
+            --color-border-strong: rgba(212, 160, 23, 0.5);
             --color-card-bg: #FFFFFF;
             --color-card-shadow: rgba(180, 100, 20, 0.12);
             --color-overlay: rgba(26, 15, 0, 0.65);
@@ -39,164 +42,271 @@
             --font-hindi: 'Tiro Devanagari Hindi', serif;
             --font-ui: 'Raleway', sans-serif;
 
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --shadow-soft: 0 10px 40px rgba(180, 100, 20, 0.10);
+            --shadow-glow: 0 0 40px rgba(212, 160, 23, 0.15);
+            --shadow-deep: 0 25px 60px rgba(26, 15, 0, 0.25);
+
+            --gradient-gold: linear-gradient(135deg, #D4A017 0%, #F0C040 50%, #D4A017 100%);
+            --gradient-saffron: linear-gradient(135deg, #C45A00 0%, #FF8F00 100%);
+            --gradient-night: linear-gradient(135deg, #1A0F00 0%, #2D1B00 50%, #1A0F00 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
             background-color: var(--color-bg-cream);
             color: var(--color-text-dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            font-size: 17px;
         }
 
-        /* Paper texture overlay */
+        /* Subtle paper texture across whole page */
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 9999;
+            mix-blend-mode: multiply;
+            opacity: 0.6;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 600;
             line-height: 1.2;
+            letter-spacing: 0.5px;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition-smooth);
-        }
+        a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
 
-        img {
-            max-width: 100%;
-            display: block;
-            object-fit: cover;
-            background-color: #E8DCC4; /* Fallback before image loads */
-        }
+        img { max-width: 100%; display: block; object-fit: cover; background-color: #E8DCC4; }
 
-        /* Image Warm Filter */
-        .warm-filter {
-            filter: sepia(0.2) contrast(1.05) brightness(0.95);
-        }
+        ::selection { background: var(--color-accent); color: var(--color-bg-dark); }
 
-        /* Layout Utility */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .dark-section {
-            background-color: var(--color-bg-dark);
-            color: var(--color-text-light);
-            position: relative;
-        }
-
-        /* Mandala Watermark */
-        .mandala-bg::after {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw; height: 80vw;
-            max-width: 800px; max-height: 800px;
-            background: radial-gradient(circle, var(--color-border) 0%, transparent 70%);
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: 0;
-            border-radius: 50%;
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg-cream); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--color-accent), var(--color-primary));
+            border-radius: 10px;
         }
 
         /* ==========================================================================
-           ROUTING (SPA)
+           UTILITIES
+           ========================================================================== */
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+        .text-center { text-align: center; }
+        .section-padding { padding: 120px 0; position: relative; }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 80px 0; }
+        }
+
+        /* ==========================================================================
+           SCROLL PROGRESS BAR (top)
+           ========================================================================== */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg,
+                var(--color-accent) 0%,
+                var(--color-accent-glow) 35%,
+                var(--color-primary-light) 70%,
+                var(--color-accent) 100%);
+            z-index: 10000;
+            box-shadow: 0 0 12px var(--color-accent-glow);
+            transition: width 0.08s linear;
+        }
+
+        /* ==========================================================================
+           SPA PAGE TRANSITIONS
            ========================================================================== */
         .page-view {
             display: none;
-            animation: fadeInPage 0.5s ease-in-out;
             min-height: calc(100vh - 200px);
         }
         .page-view.active {
             display: block;
+            animation: pageEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pageEnter {
+            from { opacity: 0; transform: translateY(24px); filter: blur(4px); }
+            to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
         }
 
         /* ==========================================================================
-           TYPOGRAPHY & UI COMPONENTS
+           DARK SECTION (rich, layered, animated)
+           ========================================================================== */
+        .dark-section {
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 10%, rgba(196, 90, 0, 0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 90% 90%, rgba(212, 160, 23, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 60% at 50% 50%, rgba(40, 25, 5, 0.4) 0%, transparent 70%),
+                var(--color-bg-dark);
+            color: var(--color-text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .dark-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(135deg,
+                    transparent 0,
+                    transparent 90px,
+                    rgba(212, 160, 23, 0.025) 90px,
+                    rgba(212, 160, 23, 0.025) 91px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .dark-section::after {
+            content: '';
+            position: absolute;
+            top: -20%; left: 50%;
+            width: 70vw; height: 70vw;
+            max-width: 900px; max-height: 900px;
+            transform: translateX(-50%);
+            background:
+                radial-gradient(circle,
+                    transparent 30%,
+                    rgba(212, 160, 23, 0.04) 31%,
+                    rgba(212, 160, 23, 0.04) 32%,
+                    transparent 33%,
+                    transparent 45%,
+                    rgba(212, 160, 23, 0.03) 46%,
+                    rgba(212, 160, 23, 0.03) 47%,
+                    transparent 48%,
+                    transparent 60%,
+                    rgba(212, 160, 23, 0.025) 61%,
+                    rgba(212, 160, 23, 0.025) 62%,
+                    transparent 63%);
+            pointer-events: none;
+            opacity: 0.6;
+            animation: mandalaSpin 90s linear infinite;
+            z-index: 0;
+        }
+        @keyframes mandalaSpin {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to   { transform: translateX(-50%) rotate(360deg); }
+        }
+        .dark-section > * { position: relative; z-index: 1; }
+
+        .mandala-bg { position: relative; }
+
+        /* ==========================================================================
+           TYPOGRAPHY & UI ATOMS
            ========================================================================== */
         .eyebrow {
             font-family: var(--font-ui);
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             color: var(--color-primary);
             font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: block;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
+        .eyebrow::before, .eyebrow::after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent));
+        }
+        .eyebrow::after {
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+        }
+        .dark-section .eyebrow { color: var(--color-accent-light); }
 
         .section-title {
-            font-size: 36px;
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 600;
             color: var(--color-text-dark);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
         }
-        
+        .section-title .accent {
+            font-family: var(--font-hero);
+            font-style: italic;
+            background: var(--gradient-saffron);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
         .dark-section .section-title {
             color: var(--color-accent-light);
         }
 
         .section-subtitle {
-            font-size: 18px;
+            font-size: 19px;
             font-style: italic;
             color: var(--color-text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        .dark-section .section-subtitle { color: rgba(245, 230, 208, 0.75); }
 
-        .dark-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .text-center { text-align: center; }
-
+        /* Buttons */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-family: var(--font-ui);
             text-transform: uppercase;
-            padding: 14px 36px;
+            padding: 16px 38px;
             border-radius: 2px;
             letter-spacing: 3px;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition-smooth);
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
         }
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 100%);
+            transform: translateX(-110%);
+            transition: transform 0.7s ease;
+            z-index: -1;
+        }
+        .btn:hover::before { transform: translateX(110%); }
 
         .btn-primary {
-            background-color: var(--color-accent);
+            background: var(--gradient-gold);
             color: var(--color-bg-dark);
+            background-size: 200% 100%;
+            background-position: 0% 50%;
         }
         .btn-primary:hover {
-            background-color: var(--color-accent-light);
-            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.4);
+            background-position: 100% 50%;
+            box-shadow: 0 8px 30px rgba(212, 160, 23, 0.45), 0 0 0 1px var(--color-accent-light);
+            transform: translateY(-2px);
         }
 
         .btn-outline {
@@ -205,90 +315,182 @@
             background: transparent;
         }
         .btn-outline:hover {
-            background-color: rgba(212, 160, 23, 0.1);
+            background: rgba(212, 160, 23, 0.12);
+            border-color: var(--color-accent-light);
+            color: var(--color-accent-light);
+            box-shadow: 0 8px 30px rgba(212, 160, 23, 0.2);
+            transform: translateY(-2px);
         }
 
         .link-gold {
             color: var(--color-primary-light);
             font-family: var(--font-ui);
             font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 13px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .link-gold::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+            transform: scaleX(0.4);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         .link-gold:hover {
             color: var(--color-accent);
-            transform: translateX(4px);
+            gap: 14px;
         }
+        .link-gold:hover::after { transform: scaleX(1); }
 
+        /* Decorative dividers — multiple variants */
         .divider-lotus {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px 0;
+            margin: 0 0 22px 0;
+            opacity: 0.95;
         }
         .divider-lotus::before, .divider-lotus::after {
             content: '';
             height: 1px;
-            width: 60px;
-            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            width: 80px;
+            background: linear-gradient(90deg, transparent, var(--color-accent));
+        }
+        .divider-lotus::after {
+            background: linear-gradient(90deg, var(--color-accent), transparent);
         }
         .divider-lotus svg {
-            width: 30px;
-            height: 30px;
+            width: 36px;
+            height: 36px;
             fill: var(--color-accent);
-            margin: 0 15px;
+            margin: 0 18px;
+            filter: drop-shadow(0 0 6px rgba(212, 160, 23, 0.4));
+        }
+
+        .divider-om {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 22px 0;
+        }
+        .divider-om::before, .divider-om::after {
+            content: '';
+            height: 1px;
+            width: 70px;
+            background: linear-gradient(90deg, transparent, var(--color-accent));
+        }
+        .divider-om::after {
+            background: linear-gradient(90deg, var(--color-accent), transparent);
+        }
+        .divider-om span {
+            margin: 0 18px;
+            font-family: var(--font-hindi);
+            font-size: 32px;
+            color: var(--color-accent);
+            text-shadow: 0 0 14px rgba(212, 160, 23, 0.5);
+        }
+
+        .divider-trishul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 22px 0;
+        }
+        .divider-trishul::before, .divider-trishul::after {
+            content: '◆';
+            color: var(--color-accent);
+            font-size: 8px;
+            margin: 0 10px;
+            opacity: 0.5;
+        }
+        .divider-trishul i {
+            display: inline-block;
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            margin: 0 6px;
+        }
+        .divider-trishul svg {
+            width: 22px; height: 22px;
+            fill: var(--color-accent);
+            margin: 0 6px;
         }
 
         /* ==========================================================================
-           HEADER & NAVIGATION
+           ANNOUNCEMENT BAR
            ========================================================================== */
         .announcement-bar {
-            background-color: var(--color-secondary);
+            background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-secondary-light) 50%, var(--color-secondary) 100%);
             color: white;
             font-family: var(--font-hindi);
-            font-size: 13px;
-            padding: 6px 0;
+            font-size: 13.5px;
+            padding: 8px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
             z-index: 100;
+            border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+        }
+        .announcement-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(212, 160, 23, 0.08) 50%,
+                transparent 100%);
+            animation: shimmerBar 6s linear infinite;
+        }
+        @keyframes shimmerBar {
+            from { transform: translateX(-100%); }
+            to   { transform: translateX(100%); }
         }
         .marquee {
             display: inline-block;
             padding-left: 100%;
-            animation: marquee 25s linear infinite;
+            animation: marquee 40s linear infinite;
+            position: relative;
         }
         @keyframes marquee {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-100%, 0); }
         }
 
+        /* ==========================================================================
+           HEADER & NAVIGATION
+           ========================================================================== */
         header {
             position: fixed;
-            top: 28px; /* Below announcement */
+            top: 32px;
             width: 100%;
             z-index: 90;
             transition: var(--transition-smooth);
             background: transparent;
-            border-bottom: 1px solid transparent;
         }
         header.scrolled {
             top: 0;
-            background: rgba(26, 15, 0, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(13, 7, 0, 0.92);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
             border-bottom: 1px solid var(--color-border);
-            padding: 5px 0;
+            padding: 4px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 16px 28px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -296,106 +498,167 @@
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
             color: white;
-            text-decoration: none;
         }
         .logo-img {
-            height: 50px;
-            width: 50px;
+            height: 52px;
+            width: 52px;
             border-radius: 50%;
             border: 2px solid var(--color-accent);
+            padding: 4px;
+            background: rgba(26, 15, 0, 0.4);
+            box-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
         }
         .logo-text h1 {
             font-family: var(--font-hero);
-            font-size: 24px;
-            margin-bottom: -4px;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: -2px;
             color: var(--color-accent-light);
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+            letter-spacing: 0.5px;
         }
         .logo-text span {
             font-family: var(--font-ui);
-            font-size: 10px;
-            letter-spacing: 2px;
+            font-size: 9.5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            color: rgba(245, 230, 208, 0.75);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 34px;
             list-style: none;
         }
         .nav-links a {
             font-family: var(--font-ui);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: white;
-            font-size: 12px;
-            font-weight: 500;
+            letter-spacing: 2.5px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 11.5px;
+            font-weight: 600;
             position: relative;
-            padding: 5px 0;
+            padding: 6px 0;
         }
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0;
+            bottom: 0; left: 50%;
             width: 0; height: 2px;
-            background-color: var(--color-accent);
-            transition: width 0.3s ease;
+            background: var(--gradient-gold);
+            transition: all 0.35s ease;
             box-shadow: 0 0 8px var(--color-accent);
+            transform: translateX(-50%);
         }
         .nav-links a:hover { color: var(--color-accent-light); }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
         .nav-links a.active { color: var(--color-accent); }
 
         .hamburger {
             display: none;
             cursor: pointer;
             background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-size: 18px;
+            width: 44px;
+            height: 44px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+        .hamburger:hover {
+            background: rgba(212, 160, 23, 0.15);
         }
 
         /* Mobile Menu */
         .mobile-menu-overlay {
             position: fixed;
             top: 0; right: -100%;
-            width: 100%; height: 100vh;
-            background: rgba(26, 15, 0, 0.98);
+            width: 100%;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse at top right, rgba(196, 90, 0, 0.2) 0%, transparent 50%),
+                rgba(13, 7, 0, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: right 0.4s ease;
+            transition: right 0.5s cubic-bezier(0.65, 0, 0.35, 1);
         }
         .mobile-menu-overlay.open { right: 0; }
         .close-menu {
             position: absolute;
             top: 30px; right: 30px;
-            font-size: 40px;
+            font-size: 38px;
             color: var(--color-accent);
             cursor: pointer;
+            line-height: 1;
+            transition: transform 0.3s ease;
         }
+        .close-menu:hover { transform: rotate(90deg); }
         .mobile-links {
             list-style: none;
             text-align: center;
         }
-        .mobile-links li { margin: 20px 0; }
+        .mobile-links li {
+            margin: 24px 0;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.4s ease;
+        }
+        .mobile-menu-overlay.open .mobile-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(1) { transition-delay: 0.10s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(2) { transition-delay: 0.18s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(3) { transition-delay: 0.26s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(4) { transition-delay: 0.34s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(5) { transition-delay: 0.42s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(6) { transition-delay: 0.50s; }
+        .mobile-menu-overlay.open .mobile-links li:nth-child(7) { transition-delay: 0.58s; }
         .mobile-links a {
             font-family: var(--font-hero);
-            font-size: 24px;
+            font-size: 28px;
             color: white;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            position: relative;
+            padding: 6px 0;
+            display: inline-block;
+        }
+        .mobile-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0; height: 1px;
+            background: var(--color-accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
         .mobile-links a:hover { color: var(--color-accent); }
+        .mobile-links a:hover::after { width: 80%; }
+        .mobile-menu-decor {
+            position: absolute;
+            bottom: 50px;
+            font-family: var(--font-hindi);
+            color: var(--color-accent);
+            font-size: 28px;
+            letter-spacing: 8px;
+            opacity: 0.6;
+        }
 
         /* ==========================================================================
-           HERO SECTION (HOME)
+           HERO SECTION (Home)
            ========================================================================== */
         .hero {
             height: 100vh;
+            min-height: 640px;
             width: 100%;
             position: relative;
             overflow: hidden;
@@ -406,42 +669,73 @@
         }
         .hero-slides {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 1;
         }
         .slide {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 1.6s ease;
             background-size: cover;
             background-position: center;
             transform: scale(1.0);
         }
         .slide.active {
             opacity: 1;
-            animation: heroKenBurns 8s ease-out forwards;
+            animation: heroKenBurns 9s ease-out forwards;
         }
         @keyframes heroKenBurns {
             0%   { transform: scale(1.05); }
-            100% { transform: scale(1.12); }
+            100% { transform: scale(1.14); }
         }
-        
+
         .hero-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(26,15,0,0.25) 0%, rgba(26,15,0,0.55) 50%, rgba(26,15,0,0.75) 100%);
+            inset: 0;
+            background:
+                radial-gradient(ellipse at center, transparent 0%, rgba(26, 15, 0, 0.5) 100%),
+                linear-gradient(to bottom,
+                    rgba(26, 15, 0, 0.30) 0%,
+                    rgba(26, 15, 0, 0.55) 50%,
+                    rgba(26, 15, 0, 0.85) 100%);
             z-index: 2;
         }
 
+        /* Decorative gold frame on hero */
+        .hero-frame {
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(212, 160, 23, 0.25);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .hero-frame::before, .hero-frame::after {
+            content: '';
+            position: absolute;
+            width: 30px; height: 30px;
+            border: 2px solid var(--color-accent);
+        }
+        .hero-frame::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+        .hero-frame::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+        .hero-frame i {
+            position: absolute;
+            width: 30px; height: 30px;
+            border: 2px solid var(--color-accent);
+        }
+        .hero-frame i:first-child { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+        .hero-frame i:last-child { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+
         .hero-content {
             position: relative;
-            z-index: 3;
+            z-index: 4;
             color: white;
-            max-width: 800px;
-            padding: 0 20px;
+            max-width: 880px;
+            padding: 0 24px;
             transform: translateY(20px);
-            animation: fadeUp 1s ease forwards 0.5s;
+            animation: fadeUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s;
             opacity: 0;
         }
         @keyframes fadeUp {
@@ -450,90 +744,125 @@
 
         .hero-label {
             font-family: var(--font-hindi);
-            color: var(--color-accent);
-            font-size: 20px;
-            letter-spacing: 8px;
-            margin-bottom: 20px;
-            display: block;
+            color: var(--color-accent-light);
+            font-size: 19px;
+            letter-spacing: 10px;
+            margin-bottom: 26px;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(212, 160, 23, 0.6);
         }
 
         .hero-title {
             font-family: var(--font-hero);
-            font-size: 64px;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
-            margin-bottom: 10px;
-            line-height: 1.1;
+            font-weight: 700;
+            font-size: clamp(40px, 7vw, 78px);
+            text-shadow: 2px 4px 30px rgba(0, 0, 0, 0.85);
+            margin-bottom: 18px;
+            line-height: 1.05;
+            letter-spacing: 1px;
+        }
+        .hero-title .glow {
+            background: linear-gradient(180deg, #FFFAEF 0%, var(--color-accent-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
         }
 
         .hero-subtitle {
-            font-size: 24px;
-            letter-spacing: 6px;
-            margin-bottom: 20px;
+            font-family: var(--font-heading);
+            font-size: clamp(16px, 2vw, 22px);
+            letter-spacing: 7px;
+            margin-bottom: 22px;
             color: var(--color-bg-cream);
+            text-transform: uppercase;
+            font-weight: 400;
         }
 
         .hero-desc {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: #E0D4C3;
+            font-size: 19px;
+            margin-bottom: 44px;
+            color: rgba(245, 230, 208, 0.92);
+            font-style: italic;
+            max-width: 580px;
+            margin-left: auto; margin-right: auto;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .slide-caption {
             position: absolute;
-            bottom: 40px; left: 40px;
-            z-index: 3;
-            color: rgba(255,255,255,0.7);
-            font-family: var(--font-ui);
-            font-size: 12px;
+            bottom: 110px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: rgba(255, 255, 255, 0.65);
+            font-family: var(--font-hindi);
+            font-size: 13.5px;
             letter-spacing: 2px;
             opacity: 0;
-            transition: opacity 1s;
+            transition: opacity 1.2s;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+            white-space: nowrap;
+            padding: 6px 18px;
+            background: rgba(13, 7, 0, 0.35);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            border-radius: 30px;
         }
         .slide.active .slide-caption { opacity: 1; }
 
         .slider-dots {
             position: absolute;
-            bottom: 40px;
-            z-index: 3;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
             display: flex;
-            gap: 12px;
+            gap: 14px;
         }
         .dot {
-            width: 12px; height: 12px;
+            width: 10px; height: 10px;
             border-radius: 50%;
             border: 2px solid var(--color-accent);
             cursor: pointer;
             transition: var(--transition-smooth);
+            position: relative;
         }
         .dot.active {
-            background-color: var(--color-accent);
-            box-shadow: 0 0 10px var(--color-accent);
+            background: var(--color-accent);
+            box-shadow: 0 0 16px var(--color-accent-glow);
+            width: 32px;
+            border-radius: 6px;
         }
 
         .scroll-down {
             position: absolute;
-            bottom: 20px;
-            z-index: 3;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
             color: var(--color-accent);
-            font-size: 24px;
-            animation: bounce 2s infinite;
+            font-size: 22px;
+            animation: bounce 2.4s infinite;
+            font-family: var(--font-ui);
+            letter-spacing: 2px;
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-15px); }
-            60% { transform: translateY(-7px); }
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -14px); }
+            60% { transform: translate(-50%, -7px); }
         }
 
-        /* Generic Page Hero */
+        /* Generic Page Hero (other pages) */
         .page-hero {
-            height: 50vh;
-            min-height: 400px;
+            height: 55vh;
+            min-height: 420px;
             position: relative;
             display: flex;
             align-items: center;
@@ -541,522 +870,1216 @@
             text-align: center;
             background-size: cover;
             background-position: center;
-            margin-top: 0;
+            overflow: hidden;
         }
-        .page-hero .hero-content { animation: none; opacity: 1; transform: none; }
-        .page-hero .hero-title { font-size: 48px; }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border: 1px solid rgba(212, 160, 23, 0.25);
+            pointer-events: none;
+        }
+        .page-hero .hero-content { animation: fadeUp 0.9s ease forwards; opacity: 0; }
+        .page-hero .hero-title { font-size: clamp(34px, 5.5vw, 56px); }
 
         /* ==========================================================================
-           SECTIONS & COMPONENTS
+           QUOTE DIVIDER (premium feel)
            ========================================================================== */
-        
-        /* Quote Divider */
         .quote-divider {
-            background: var(--color-secondary);
-            padding: 40px 20px;
+            background:
+                radial-gradient(ellipse at center, var(--color-secondary-light) 0%, var(--color-secondary) 60%, #0E1456 100%);
+            padding: 64px 24px;
             text-align: center;
-            border-top: 2px solid var(--color-accent-light);
-            border-bottom: 2px solid var(--color-accent-light);
+            position: relative;
+            overflow: hidden;
         }
+        .quote-divider::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(45deg,
+                    transparent 0,
+                    transparent 60px,
+                    rgba(212, 160, 23, 0.04) 60px,
+                    rgba(212, 160, 23, 0.04) 61px);
+        }
+        .quote-divider::after {
+            content: '';
+            position: absolute;
+            inset: 16px;
+            border: 1px solid rgba(212, 160, 23, 0.4);
+            pointer-events: none;
+        }
+        .quote-mark {
+            position: absolute;
+            font-family: var(--font-hero);
+            font-size: 130px;
+            line-height: 1;
+            color: rgba(212, 160, 23, 0.15);
+            user-select: none;
+        }
+        .quote-mark.left  { top: 14px; left: 30px; }
+        .quote-mark.right { bottom: -30px; right: 30px; transform: rotate(180deg); }
         .quote-text {
             font-family: var(--font-hindi);
             color: var(--color-accent-light);
-            font-size: 24px;
+            font-size: clamp(20px, 2.4vw, 28px);
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 16px;
+            position: relative;
+            line-height: 1.5;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
         }
         .quote-author {
-            color: white;
-            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            font-family: var(--font-heading);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .quote-divider .divider-trishul {
+            margin-bottom: 26px;
         }
 
-        /* About Section (Home & Page) */
+        /* ==========================================================================
+           ABOUT SECTION
+           ========================================================================== */
         .about-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 80px;
             align-items: center;
         }
         .about-text p {
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             color: var(--color-text-muted);
-            text-align: justify;
+            line-height: 1.85;
+        }
+        .about-text p:first-of-type::first-letter {
+            font-family: var(--font-hero);
+            font-size: 64px;
+            float: left;
+            line-height: 0.8;
+            margin: 8px 12px 0 0;
+            color: var(--color-primary);
+            font-weight: 700;
         }
         .about-image-wrapper {
             position: relative;
-            padding: 20px;
+            padding: 22px;
         }
         .about-image-wrapper::before {
             content: '';
             position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
+            inset: 0;
             border: 2px solid var(--color-accent);
             transform: rotate(3deg);
             z-index: 0;
+            transition: transform 0.6s ease;
+        }
+        .about-image-wrapper::after {
+            content: 'ॐ';
+            position: absolute;
+            top: -22px; right: -22px;
+            font-family: var(--font-hindi);
+            font-size: 54px;
+            color: var(--color-accent);
+            background: var(--color-bg-cream);
+            width: 70px; height: 70px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--color-accent);
+            box-shadow: 0 4px 20px rgba(212, 160, 23, 0.3);
+            z-index: 2;
         }
         .about-image-wrapper img {
             position: relative;
             z-index: 1;
             border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: var(--shadow-deep);
             transform: rotate(-1deg);
             transition: var(--transition-smooth);
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
         }
-        .about-image-wrapper:hover img {
-            transform: rotate(0) scale(1.02);
-        }
+        .about-image-wrapper:hover::before { transform: rotate(0); }
+        .about-image-wrapper:hover img { transform: rotate(0) scale(1.02); }
 
-        /* Grid Layouts */
+        /* ==========================================================================
+           SERVICE CARDS (premium with gradient border + glow)
+           ========================================================================== */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 32px;
             position: relative;
             z-index: 2;
         }
 
-        /* Main Service Cards */
         .service-card {
-            background: var(--color-card-bg);
-            border-radius: 8px;
+            background: linear-gradient(165deg, #FFFFFF 0%, #FFFAEE 100%);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 32px var(--color-card-shadow);
-            border-left: 4px solid var(--color-accent);
+            box-shadow: 0 12px 40px rgba(180, 100, 20, 0.10);
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
+            isolation: isolate;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 1px;
+            background: linear-gradient(135deg,
+                var(--color-accent) 0%,
+                rgba(212, 160, 23, 0.2) 30%,
+                transparent 50%,
+                rgba(196, 90, 0, 0.3) 75%,
+                var(--color-primary) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.7;
+            transition: opacity 0.4s ease;
         }
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(180, 100, 20, 0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(180, 100, 20, 0.22), 0 0 30px rgba(212, 160, 23, 0.15);
         }
+        .service-card:hover::before { opacity: 1; }
+
         .card-img-wrapper {
-            height: 220px;
+            height: 240px;
             overflow: hidden;
+            position: relative;
+        }
+        .card-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(26, 15, 0, 0.35) 100%);
+            pointer-events: none;
         }
         .card-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s ease;
+            width: 100%; height: 100%;
+            transition: transform 0.8s ease;
         }
-        .service-card:hover .card-img-wrapper img {
-            transform: scale(1.08);
-        }
+        .service-card:hover .card-img-wrapper img { transform: scale(1.10); }
+
         .card-body {
-            padding: 28px;
+            padding: 30px 28px 28px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+        .card-body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 0 0 4px 4px;
         }
         .card-title {
-            font-size: 20px;
-            margin-bottom: 5px;
+            font-family: var(--font-heading);
+            font-size: 22px;
+            margin-bottom: 6px;
             color: var(--color-primary-dark);
+            font-weight: 600;
         }
         .card-tagline {
-            font-size: 14px;
+            font-size: 14.5px;
             font-style: italic;
             color: var(--color-primary);
-            margin-bottom: 15px;
+            margin-bottom: 14px;
+            font-family: var(--font-body);
         }
         .card-desc {
             font-size: 16px;
             color: var(--color-text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             flex-grow: 1;
+            line-height: 1.7;
         }
         .card-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
         .pill {
-            background: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
             color: white;
             font-family: var(--font-ui);
             font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 5px 12px;
+            border-radius: 30px;
             letter-spacing: 0.5px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(196, 90, 0, 0.25);
         }
 
-        /* Horizontal Scroll Section (Nearby Places) */
-        .horizontal-scroll-container {
+        /* ==========================================================================
+           FACILITY CARDS (cleaner glass-touch design)
+           ========================================================================== */
+        .facility-card {
+            display: flex;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 160, 23, 0.25);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
             position: relative;
-            background: var(--color-bg-section);
+        }
+        .facility-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--gradient-gold);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.45s ease;
+        }
+        .facility-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(180, 100, 20, 0.15);
+            border-color: var(--color-accent);
+        }
+        .facility-card:hover::after { transform: scaleY(1); }
+
+        .facility-img {
+            width: 42%;
+            min-width: 150px;
+            overflow: hidden;
+        }
+        .facility-img img {
+            width: 100%; height: 100%;
+            transition: transform 0.6s ease;
+        }
+        .facility-card:hover .facility-img img { transform: scale(1.08); }
+
+        .facility-content {
+            padding: 22px;
+            width: 58%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .facility-title {
+            font-family: var(--font-heading);
+            font-size: 19px;
+            color: var(--color-primary-dark);
+            margin-bottom: 8px;
+        }
+        .facility-desc {
+            font-size: 14.5px;
+            color: var(--color-text-muted);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           NEARBY PLACES (horizontal scroll)
+           ========================================================================== */
+        .horizontal-scroll-container {
+            background:
+                linear-gradient(180deg, transparent 0%, var(--color-bg-section) 50%, transparent 100%);
+            position: relative;
         }
         .scroll-wrapper {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            padding: 20px 0 40px 0;
-            scrollbar-width: none; /* Firefox */
+            padding: 20px 0 50px 0;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
         }
-        .scroll-wrapper::-webkit-scrollbar { display: none; } /* Chrome */
-        
+        .scroll-wrapper::-webkit-scrollbar { display: none; }
+
         .place-card {
-            min-width: 280px;
-            height: 380px;
+            flex: 0 0 auto;
+            width: 290px;
+            height: 400px;
             scroll-snap-align: start;
             position: relative;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(180, 100, 20, 0.15);
+            transition: var(--transition-smooth);
+        }
+        .place-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(180, 100, 20, 0.25);
         }
         .place-card img {
             width: 100%; height: 100%;
-            transition: var(--transition-smooth);
+            transition: transform 0.8s ease;
         }
         .place-card-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            background:
+                linear-gradient(to top,
+                    rgba(13, 7, 0, 0.95) 0%,
+                    rgba(13, 7, 0, 0.6) 35%,
+                    rgba(13, 7, 0, 0.1) 65%,
+                    transparent 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 20px;
+            padding: 24px 22px;
             color: white;
         }
+        .place-card-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(212, 160, 23, 0);
+            transition: border-color 0.4s ease;
+            pointer-events: none;
+        }
+        .place-card:hover .place-card-overlay::before { border-color: rgba(212, 160, 23, 0.5); }
         .place-title {
             font-family: var(--font-heading);
-            font-size: 20px;
-            margin-bottom: 5px;
+            font-size: 22px;
+            margin-bottom: 8px;
             color: var(--color-accent-light);
-            transform: translateY(20px);
             transition: var(--transition-smooth);
         }
         .place-desc {
             font-size: 14px;
             opacity: 0;
-            transform: translateY(20px);
+            max-height: 0;
+            overflow: hidden;
+            transform: translateY(15px);
             transition: var(--transition-smooth);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-body);
+            font-style: italic;
         }
-        .place-card:hover img { transform: scale(1.1); }
-        .place-card:hover .place-title { transform: translateY(0); }
-        .place-card:hover .place-desc { opacity: 1; transform: translateY(0); }
+        .place-card:hover img { transform: scale(1.12); }
+        .place-card:hover .place-desc {
+            opacity: 1;
+            max-height: 100px;
+            transform: translateY(0);
+        }
 
         .scroll-controls {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
-            margin-top: -20px;
-            padding-right: 20px;
+            gap: 12px;
+            margin-bottom: 10px;
         }
         .scroll-btn {
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            width: 40px; height: 40px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--color-accent);
+            color: var(--color-primary-dark);
+            width: 46px; height: 46px;
             border-radius: 50%;
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             font-size: 18px;
             transition: var(--transition-smooth);
         }
-        .scroll-btn:hover { background: var(--color-primary-dark); }
-
-        /* Facility Cards (Horizontal on Desktop) */
-        .facility-card {
-            display: flex;
-            background: var(--color-bg-cream);
-            border-top: 2px solid var(--color-accent);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: var(--transition-smooth);
-        }
-        .facility-card:hover { transform: translateY(-5px); }
-        .facility-img {
-            width: 40%;
-            min-width: 140px;
-        }
-        .facility-img img { width: 100%; height: 100%; }
-        .facility-content {
-            padding: 20px;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .facility-title {
-            font-size: 18px;
-            color: var(--color-primary-dark);
-            margin-bottom: 8px;
-        }
-        .facility-desc {
-            font-size: 14px;
-            color: var(--color-text-muted);
-            margin-bottom: 12px;
-            line-height: 1.4;
+        .scroll-btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.4);
         }
 
-        /* Festival Cards */
+        /* ==========================================================================
+           FESTIVAL CARDS (smoother slide-up reveal)
+           ========================================================================== */
         .festival-card {
             position: relative;
-            height: 300px;
-            border-radius: 8px;
+            height: 360px;
+            border-radius: 12px;
             overflow: hidden;
-            border-bottom: 4px solid var(--color-accent);
+            cursor: pointer;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+            isolation: isolate;
         }
-        .festival-card img { width: 100%; height: 100%; }
+        .festival-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                rgba(13, 7, 0, 0) 0%,
+                rgba(13, 7, 0, 0.25) 50%,
+                rgba(13, 7, 0, 0.95) 100%);
+            z-index: 2;
+            transition: opacity 0.5s ease;
+        }
+        .festival-card img {
+            width: 100%; height: 100%;
+            transition: transform 1s ease;
+            position: absolute;
+            inset: 0;
+        }
+        .festival-card:hover img { transform: scale(1.10); }
+
         .fest-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(26, 15, 0, 0.7);
             padding: 30px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: var(--transition-smooth);
+            justify-content: flex-end;
+            text-align: left;
+            z-index: 3;
         }
         .fest-month {
             font-family: var(--font-ui);
-            color: var(--color-accent);
-            font-size: 12px;
-            letter-spacing: 2px;
+            color: var(--color-accent-light);
+            font-size: 11px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .fest-month::before {
+            content: '';
+            width: 16px; height: 1px;
+            background: var(--color-accent-light);
         }
         .fest-title {
             font-family: var(--font-heading);
             color: white;
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 26px;
+            margin-bottom: 16px;
+            line-height: 1.15;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
         }
         .fest-desc {
-            color: rgba(255,255,255,0.8);
+            color: rgba(245, 230, 208, 0.92);
             font-size: 15px;
+            font-family: var(--font-body);
+            line-height: 1.6;
+            max-height: 0;
             opacity: 0;
-            transform: scale(0.9);
+            overflow: hidden;
+            transform: translateY(10px);
             transition: var(--transition-smooth);
-            position: absolute;
-            inset: 20px;
-            background: var(--color-bg-dark);
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border: 1px solid var(--color-border);
         }
         .festival-card:hover .fest-desc {
+            max-height: 200px;
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0);
+            margin-top: 0;
+        }
+        .fest-cta {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--color-accent);
+            font-family: var(--font-ui);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition-smooth);
+        }
+        .festival-card:hover .fest-cta {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
         }
 
-        /* Info Columns (How to reach) */
+        /* ==========================================================================
+           HOW TO REACH (info columns)
+           ========================================================================== */
         .info-columns {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
+            gap: 36px;
         }
+        .info-col {
+            text-align: center;
+            padding: 40px 28px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-col::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+        .info-col:hover {
+            transform: translateY(-6px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(180, 100, 20, 0.12);
+        }
+        .info-col:hover::before { transform: scaleX(1); }
+
         .info-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 38px;
+            margin-bottom: 18px;
             color: var(--color-primary);
+            display: inline-flex;
+            width: 76px; height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.15) 0%, rgba(196, 90, 0, 0.1) 100%);
+            border: 1px solid var(--color-border-strong);
+            align-items: center;
+            justify-content: center;
         }
-        .highlight-box {
-            background: rgba(212, 160, 23, 0.1);
-            border: 1px solid var(--color-accent);
-            padding: 20px;
-            text-align: center;
-            margin-top: 40px;
-            border-radius: 4px;
-            font-weight: 600;
+        .info-col h4 {
+            font-family: var(--font-heading);
+            font-size: 22px;
             color: var(--color-primary-dark);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .info-col p {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 1.7;
         }
 
-        /* Alternating Detail Sections (Places Page) */
+        .highlight-box {
+            background: linear-gradient(135deg,
+                rgba(212, 160, 23, 0.12) 0%,
+                rgba(196, 90, 0, 0.08) 100%);
+            border: 1px solid var(--color-border-strong);
+            padding: 24px 32px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--color-primary-dark);
+            font-family: var(--font-heading);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .highlight-box::before, .highlight-box::after {
+            content: '✦';
+            color: var(--color-accent);
+            margin: 0 14px;
+        }
+
+        /* ==========================================================================
+           PLACES PAGE — alternating detail sections
+           ========================================================================== */
         .detail-section {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
-            gap: 50px;
-            margin-bottom: 80px;
+            gap: 70px;
+            margin-bottom: 100px;
         }
         .detail-section:nth-child(even) {
-            flex-direction: row-reverse;
+            direction: rtl;
         }
+        .detail-section:nth-child(even) > * { direction: ltr; }
+
         .detail-image {
-            flex: 1;
-            height: 400px;
-            border-radius: 8px;
+            height: 460px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-deep);
+            position: relative;
+            transition: var(--transition-smooth);
         }
-        .detail-image img { width: 100%; height: 100%; }
-        .detail-content {
-            flex: 1;
+        .detail-image::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(212, 160, 23, 0.5);
+            z-index: 2;
+            pointer-events: none;
         }
+        .detail-image:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(180, 100, 20, 0.25); }
+        .detail-image img {
+            width: 100%; height: 100%;
+            transition: transform 0.8s ease;
+        }
+        .detail-image:hover img { transform: scale(1.06); }
+
+        .detail-content .section-title { margin-bottom: 8px; }
+        .detail-content > p {
+            font-size: 17px;
+            color: var(--color-text-muted);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            gap: 12px;
+            margin: 24px 0 28px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF8E7 100%);
+            padding: 24px;
+            border-radius: 10px;
             border: 1px solid var(--color-border);
+        }
+        .info-item {
+            padding: 8px 4px;
+            border-left: 2px solid var(--color-accent);
+            padding-left: 14px;
         }
         .info-item span {
             display: block;
             font-family: var(--font-ui);
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--color-primary);
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
         }
         .info-item strong {
             font-family: var(--font-body);
             color: var(--color-text-dark);
-            font-size: 15px;
+            font-size: 15.5px;
+            font-weight: 600;
         }
 
-        /* Gallery Masonry */
+        /* ==========================================================================
+           ABOUT-PAGE significance cards
+           ========================================================================== */
+        .significance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 50px;
+        }
+        .significance-card {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 248, 231, 0.95) 100%);
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-accent);
+            padding: 24px 28px;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            font-size: 16px;
+            line-height: 1.65;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .significance-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 12px 30px rgba(180, 100, 20, 0.12);
+            border-left-color: var(--color-primary);
+        }
+        .significance-card .mark {
+            color: var(--color-accent);
+            font-size: 22px;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+
+        /* ==========================================================================
+           GALLERY (filters + masonry + premium lightbox)
+           ========================================================================== */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--color-border-strong);
+            color: var(--color-text-muted);
+            font-family: var(--font-ui);
+            font-size: 11.5px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 600;
+        }
+        .filter-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-primary-dark);
+        }
+        .filter-btn.active {
+            background: var(--gradient-gold);
+            border-color: transparent;
+            color: var(--color-bg-dark);
+            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.35);
+        }
+
         .gallery-grid {
             column-count: 3;
-            column-gap: 20px;
+            column-gap: 22px;
         }
         .gallery-item {
             break-inside: avoid;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             position: relative;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 8px 24px rgba(180, 100, 20, 0.08);
+            transition: var(--transition-smooth);
         }
+        .gallery-item.hide {
+            display: none;
+        }
+        .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(180, 100, 20, 0.18); }
         .gallery-item img {
             width: 100%;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
+        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(139, 62, 0, 0.6);
+            background: linear-gradient(135deg, rgba(196, 90, 0, 0.7) 0%, rgba(26, 15, 0, 0.5) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: var(--transition-smooth);
         }
-        .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
         .gallery-overlay span {
             color: white;
             font-family: var(--font-heading);
-            font-size: 18px;
+            font-size: 16px;
             border: 1px solid white;
-            padding: 10px 20px;
+            padding: 10px 24px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
         }
 
-        /* Lightbox */
+        /* Lightbox premium */
         .lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(13, 7, 0, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 2000;
             display: none;
             align-items: center;
             justify-content: center;
+            padding: 40px;
         }
-        .lightbox.active { display: flex; }
+        .lightbox.active {
+            display: flex;
+            animation: lbFadeIn 0.4s ease;
+        }
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
         .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
+            max-width: 88vw;
+            max-height: 84vh;
             border: 4px solid var(--color-accent);
+            box-shadow: 0 0 60px rgba(212, 160, 23, 0.3);
+            animation: lbZoom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes lbZoom {
+            from { transform: scale(0.9); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
         }
         .lb-close, .lb-prev, .lb-next {
             position: absolute;
-            color: white;
-            font-size: 40px;
+            color: var(--color-accent);
+            background: rgba(212, 160, 23, 0.1);
+            border: 1px solid var(--color-accent);
             cursor: pointer;
-            background: none;
-            border: none;
-            padding: 20px;
+            transition: var(--transition-smooth);
+            font-family: var(--font-ui);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .lb-close { top: 20px; right: 20px; }
-        .lb-prev { left: 20px; }
-        .lb-next { right: 20px; }
+        .lb-close { top: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; }
+        .lb-prev, .lb-next {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px; height: 56px;
+            border-radius: 50%;
+        }
+        .lb-prev { left: 30px; }
+        .lb-next { right: 30px; }
+        .lb-close:hover, .lb-prev:hover, .lb-next:hover {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            transform: scale(1.08);
+        }
+        .lb-prev:hover, .lb-next:hover { transform: translateY(-50%) scale(1.08); }
+        .lb-counter {
+            position: absolute;
+            bottom: 28px; left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-accent);
+            font-family: var(--font-ui);
+            font-size: 13px;
+            letter-spacing: 4px;
+            background: rgba(13, 7, 0, 0.6);
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--color-border-strong);
+        }
 
-        /* Contact Section */
-        .contact-card {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 40px var(--color-card-shadow);
-            text-align: center;
-            border-top: 4px solid var(--color-primary);
+        /* ==========================================================================
+           CONTACT PAGE
+           ========================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: stretch;
         }
+        .contact-card {
+            background: linear-gradient(165deg, #FFFFFF 0%, #FFFAEE 100%);
+            padding: 44px 38px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: var(--gradient-gold);
+        }
+        .contact-card .section-title { margin-bottom: 6px; }
+        .contact-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin: 18px 0;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed var(--color-border);
+        }
+        .contact-info-row:last-of-type { border-bottom: 0; }
+        .contact-icon {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.15) 0%, rgba(196, 90, 0, 0.1) 100%);
+            border: 1px solid var(--color-border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            color: var(--color-primary);
+        }
+        .contact-info-row strong {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .contact-info-row p {
+            font-size: 16px;
+            color: var(--color-text-dark);
+            line-height: 1.55;
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: linear-gradient(165deg, #FFFAEE 0%, #FFF3E0 100%);
+            padding: 44px 38px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-soft);
+        }
+        .contact-form h3 {
+            font-family: var(--font-heading);
+            font-size: 26px;
+            color: var(--color-primary-dark);
+            margin-bottom: 6px;
+        }
+        .contact-form .subtitle {
+            font-style: italic;
+            color: var(--color-text-muted);
+            font-size: 15px;
+            margin-bottom: 26px;
+        }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--color-text-dark);
+            transition: var(--transition-smooth);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.15);
+        }
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+            font-family: var(--font-body);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
         .map-wrapper {
             height: 400px;
-            background: #e0e0e0;
+            background:
+                linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            margin-top: 40px;
+            margin-top: 50px;
+            border: 1px solid var(--color-border-strong);
+            box-shadow: var(--shadow-soft);
         }
-        .map-wrapper img { width: 100%; height: 100%; opacity: 0.8; }
+        .map-wrapper img {
+            width: 100%; height: 100%;
+            opacity: 0.85;
+        }
         .map-overlay {
             position: absolute;
-            background: rgba(255,255,255,0.9);
-            padding: 15px 30px;
-            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 231, 0.95) 100%);
+            padding: 18px 36px;
+            border-radius: 50px;
             font-family: var(--font-ui);
-            font-weight: bold;
+            font-weight: 700;
             color: var(--color-primary-dark);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--color-accent);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .map-overlay:hover {
+            transform: scale(1.04);
+            box-shadow: 0 14px 36px rgba(212, 160, 23, 0.3);
         }
 
-        /* Footer */
+        .visitor-tips {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-top: 50px;
+        }
+        .tip-card {
+            text-align: center;
+            padding: 30px 22px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            transition: var(--transition-smooth);
+        }
+        .tip-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+            box-shadow: 0 14px 30px rgba(180, 100, 20, 0.12);
+        }
+        .tip-card .ico {
+            font-size: 30px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .tip-card h5 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            color: var(--color-primary-dark);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+        .tip-card p {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
         footer {
-            background-color: var(--color-bg-dark);
+            background:
+                radial-gradient(ellipse at top, rgba(196, 90, 0, 0.18) 0%, transparent 60%),
+                var(--color-bg-darker);
             color: var(--color-text-light);
-            padding: 80px 0 20px;
+            padding: 100px 0 24px;
             position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+        }
+        footer::after {
+            content: 'ॐ';
+            position: absolute;
+            top: -60px; right: -60px;
+            font-family: var(--font-hindi);
+            font-size: 380px;
+            color: rgba(212, 160, 23, 0.04);
+            line-height: 1;
+            pointer-events: none;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 70px;
+            position: relative;
+            z-index: 1;
         }
         .footer-logo h2 {
             font-family: var(--font-hero);
             color: var(--color-accent);
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            font-size: 26px;
+        }
+        .footer-logo p {
+            font-size: 15px;
+            color: rgba(245, 230, 208, 0.75);
+            line-height: 1.7;
+            font-family: var(--font-body);
         }
         .footer-col h4 {
             font-family: var(--font-ui);
             color: var(--color-accent-light);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 14px;
-            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 22px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 30px; height: 2px;
+            background: var(--color-accent);
         }
         .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #ccc; font-size: 15px; }
-        .footer-links a:hover { color: var(--color-accent); padding-left: 5px; }
+        .footer-links li {
+            margin-bottom: 12px;
+            font-size: 14.5px;
+            color: rgba(245, 230, 208, 0.7);
+        }
+        .footer-links a {
+            color: rgba(245, 230, 208, 0.7);
+            font-size: 14.5px;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+        }
+        .footer-links a::before {
+            content: '›';
+            margin-right: 8px;
+            color: var(--color-accent);
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: var(--transition-smooth);
+        }
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+        .footer-links a:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 28px;
             border-top: 1px solid rgba(212, 160, 23, 0.2);
             font-size: 13px;
-            color: #888;
+            color: rgba(245, 230, 208, 0.55);
+            font-family: var(--font-ui);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Animations */
+        /* ==========================================================================
+           SCROLL ANIMATIONS
+           ========================================================================== */
         .fade-in-up {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .fade-in-up.visible {
             opacity: 1;
@@ -1066,57 +2089,88 @@
         /* Back to top */
         #backToTop {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--color-primary);
-            color: white;
-            width: 45px; height: 45px;
+            bottom: 32px;
+            right: 32px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--color-accent-light);
+            width: 48px; height: 48px;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             opacity: 0;
             pointer-events: none;
             transition: var(--transition-smooth);
             z-index: 99;
-            border: 2px solid var(--color-accent);
+            border: 1px solid var(--color-accent);
             text-decoration: none;
-            font-size: 20px;
+            font-size: 22px;
+            box-shadow: 0 8px 24px rgba(196, 90, 0, 0.35);
         }
         #backToTop.show { opacity: 1; pointer-events: auto; }
+        #backToTop:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(196, 90, 0, 0.5);
+        }
 
-        /* Responsive Breakpoints */
+        /* ==========================================================================
+           RESPONSIVE BREAKPOINTS
+           ========================================================================== */
         @media (max-width: 1024px) {
             .card-grid { grid-template-columns: repeat(2, 1fr); }
             .facility-card { flex-direction: column; }
             .facility-img, .facility-content { width: 100%; }
+            .facility-img { min-height: 180px; }
             .gallery-grid { column-count: 2; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            .detail-section, .detail-section:nth-child(even) { flex-direction: column; gap: 30px; }
-            .detail-image { height: 300px; width: 100%; }
+            .detail-section { grid-template-columns: 1fr; gap: 32px; direction: ltr; }
+            .detail-section:nth-child(even) { direction: ltr; }
+            .detail-image { height: 320px; width: 100%; }
+            .significance-grid { grid-template-columns: 1fr; }
+            .visitor-tips { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+            .about-grid { gap: 50px; }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hamburger { display: block; }
-            .hero-title { font-size: 40px; }
-            .hero-subtitle { font-size: 16px; }
+            .hamburger { display: flex; align-items: center; justify-content: center; }
             .about-grid { grid-template-columns: 1fr; }
             .info-columns { grid-template-columns: 1fr; }
-            .page-hero .hero-title { font-size: 32px; }
-            .btn { padding: 12px 24px; font-size: 11px; }
+            .form-row { grid-template-columns: 1fr; }
+            .btn { padding: 13px 26px; font-size: 11px; letter-spacing: 2.5px; }
+            .hero { min-height: 580px; }
+            .hero-frame { inset: 16px; }
+            .hero-frame::before, .hero-frame::after, .hero-frame i { width: 22px; height: 22px; }
+            .slide-caption { font-size: 11.5px; padding: 5px 14px; }
+            .quote-mark { font-size: 80px; }
+            .section-padding { padding: 70px 0; }
+            .about-image-wrapper img { height: 360px; }
+            .about-image-wrapper::after { width: 56px; height: 56px; font-size: 42px; top: -16px; right: -16px; }
+            .detail-image { height: 260px; }
+            .detail-image::before { inset: 10px; }
         }
         @media (max-width: 480px) {
             .card-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .gallery-grid { column-count: 1; }
-            .hero-buttons { flex-direction: column; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
             .info-grid { grid-template-columns: 1fr; }
+            .visitor-tips { grid-template-columns: 1fr; }
+            .gallery-filters { gap: 6px; }
+            .filter-btn { padding: 8px 14px; font-size: 10.5px; letter-spacing: 1.5px; }
+            .place-card { width: 250px; height: 360px; }
+            .lb-prev { left: 12px; }
+            .lb-next { right: 12px; }
+            .lb-close { top: 16px; right: 16px; }
+            .contact-card, .contact-form { padding: 28px 22px; }
         }
-
-        /* SVG Icons Inline */
-        .icon { display: inline-block; width: 1em; height: 1em; stroke-width: 0; stroke: currentColor; fill: currentColor; }
     </style>
 </head>
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Top Announcement Bar -->
     <div class="announcement-bar">
@@ -1129,7 +2183,7 @@
     <header id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo-area">
-                <img src="images/logo.png" alt="Om Logo" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%23D4A017\'><text x=\'50\' y=\'65\' font-size=\'50\' text-anchor=\'middle\' font-family=\'serif\'>ॐ</text></svg>'">
+                <img src="images/logo.png" alt="Om Logo" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%23D4A017\'><text x=\'50\' y=\'68\' font-size=\'58\' text-anchor=\'middle\' font-family=\'serif\'>ॐ</text></svg>'">
                 <div class="logo-text">
                     <h1>श्री चित्रकूट धाम</h1>
                     <span>Satna, Madhya Pradesh</span>
@@ -1144,7 +2198,7 @@
                 <li><a href="#gallery" class="nav-item" data-target="gallery">Gallery</a></li>
                 <li><a href="#contact" class="nav-item" data-target="contact">Contact</a></li>
             </ul>
-            <button class="hamburger" id="hamburger">☰</button>
+            <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
         </div>
     </header>
 
@@ -1160,17 +2214,18 @@
             <li><a href="#gallery" class="nav-item-mobile">Gallery</a></li>
             <li><a href="#contact" class="nav-item-mobile">Contact</a></li>
         </ul>
+        <div class="mobile-menu-decor">॥ जय श्री राम ॥</div>
     </div>
 
     <!-- MAIN APP CONTENT (SPA ROUTING CONTAINER) -->
     <main id="app-content">
 
         <!-- ==========================================
-             PAGE 1: HOME (index.html simulation)
+             PAGE 1: HOME
              ========================================== -->
         <div id="page-home" class="page-view active">
-            
-            <!-- Hero Slider Section -->
+
+            <!-- Hero Slider -->
             <section class="hero">
                 <div class="hero-slides" id="heroSlides">
                     <div class="slide active" style="background-image: url('C1.png');">
@@ -1184,10 +2239,12 @@
                     </div>
                 </div>
                 <div class="hero-overlay"></div>
-                
+
+                <div class="hero-frame"><i></i><i></i></div>
+
                 <div class="hero-content">
                     <span class="hero-label">॥ जय श्री राम ॥</span>
-                    <h1 class="hero-title">श्री चित्रकूट धाम</h1>
+                    <h1 class="hero-title"><span class="glow">श्री चित्रकूट धाम</span></h1>
                     <div class="hero-subtitle">The Hill of Many Wonders</div>
                     <p class="hero-desc">Where Lord Rama spent his sacred exile on the banks of the Mandakini</p>
                     <div class="hero-buttons">
@@ -1202,11 +2259,18 @@
                     <div class="dot" data-index="2"></div>
                 </div>
 
-                <div class="scroll-down">↓</div>
+                <div class="scroll-down">↓ Scroll</div>
             </section>
 
             <!-- Quote Divider -->
             <div class="quote-divider">
+                <span class="quote-mark left">"</span>
+                <span class="quote-mark right">"</span>
+                <div class="divider-trishul">
+                    <i></i>
+                    <svg viewBox="0 0 24 24"><path d="M12 0L8 8h2v6H6v8h12v-8h-4V8h2L12 0zm-2 14h4v6h-4v-6z"/></svg>
+                    <i></i>
+                </div>
                 <div class="quote-text">चित्रकूट के घाट पर भई सन्तन की भीर। तुलसीदास चन्दन घिसैं तिलक देत रघुवीर॥</div>
                 <div class="quote-author">— Goswami Tulsidas, Ramcharitmanas</div>
             </div>
@@ -1216,18 +2280,18 @@
                 <div class="container about-grid">
                     <div class="about-text fade-in-up">
                         <span class="eyebrow">About Chitrakoot</span>
-                        <h2 class="section-title">The Sacred Land of Lord Rama's Exile</h2>
+                        <h2 class="section-title">The Sacred Land of <span class="accent">Lord Rama's</span> Exile</h2>
                         <p>Chitrakoot Dham, nestled in the serene hills of the northern Vindhya Range along the banks of the sacred Mandakini River, is one of India's most revered pilgrimage centres. Located in Satna district of Madhya Pradesh, Chitrakoot — meaning 'The Hill of Many Wonders' — is deeply connected to the epic Ramayana.</p>
                         <p>Lord Rama, Mata Sita, and Lakshman spent eleven and a half years of their fourteen-year exile in these divine forests. The Hindu trinity — Brahma, Vishnu, and Mahesh — are said to have taken incarnation here.</p>
                         <a href="#about" class="link-gold">Know More &rarr;</a>
                     </div>
                     <div class="about-image-wrapper fade-in-up">
-                        <img src="images/about-temple-history.jpg" alt="Ancient Temple Architecture" class="warm-filter">
+                        <img src="images/about-temple-history.jpg" alt="Ancient Temple Architecture">
                     </div>
                 </div>
             </section>
 
-            <!-- Sacred Experiences (Cards) -->
+            <!-- Sacred Experiences (Service Cards) -->
             <section class="section-padding dark-section mandala-bg">
                 <div class="container">
                     <div class="text-center fade-in-up">
@@ -1235,14 +2299,13 @@
                             <svg viewBox="0 0 512 512"><path d="M256,0C157.9,0,67.6,44.9,0,111.4c17.1,52.2,49,99.5,93.6,138.8c42.5,37.5,91.8,61.7,143.2,74.5 C198.5,355.6,173.8,387,171,424c-1.2,16.5,4,32.7,14.6,45.3c11.9,14.2,29.3,22.2,47.8,22.2h45.2c18.5,0,35.9-8,47.8-22.2 c10.6-12.6,15.8-28.8,14.6-45.3c-2.7-36.9-27.4-68.3-65.8-99.2c51.4-12.7,100.7-37,143.2-74.5C463,210.9,494.9,163.6,512,111.4 C444.4,44.9,354.1,0,256,0z"/></svg>
                         </div>
                         <span class="eyebrow">Divine Experiences</span>
-                        <h2 class="section-title">Sacred Pilgrimages & Rituals</h2>
+                        <h2 class="section-title">Sacred Pilgrimages &amp; <span class="accent">Rituals</span></h2>
                         <p class="section-subtitle">Explore the spiritual treasures of Chitrakoot Dham</p>
                     </div>
 
                     <div class="card-grid">
-                        <!-- Card 1 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.1s;">
-                            <div class="card-img-wrapper"><img src="images/card-kamadgiri-parikrama.jpg" alt="Kamadgiri Parikrama" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.05s;">
+                            <div class="card-img-wrapper"><img src="images/card-kamadgiri-parikrama.jpg" alt="Kamadgiri Parikrama"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Kamadgiri Parikrama</h3>
                                 <div class="card-tagline">The Hill That Fulfills All Desires</div>
@@ -1255,9 +2318,8 @@
                                 <a href="#places" class="link-gold">Explore &rarr;</a>
                             </div>
                         </div>
-                        <!-- Card 2 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.2s;">
-                            <div class="card-img-wrapper"><img src="images/card-ramghat-aarti.jpg" alt="Ramghat Aarti" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.12s;">
+                            <div class="card-img-wrapper"><img src="images/card-ramghat-aarti.jpg" alt="Ramghat Aarti"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Ramghat Mandakini Aarti</h3>
                                 <div class="card-tagline">The Divine Evening Aarti</div>
@@ -1269,9 +2331,8 @@
                                 <a href="#places" class="link-gold">Explore &rarr;</a>
                             </div>
                         </div>
-                        <!-- Card 3 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.3s;">
-                            <div class="card-img-wrapper"><img src="images/card-hanuman-dhara.jpg" alt="Hanuman Dhara" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.19s;">
+                            <div class="card-img-wrapper"><img src="images/card-hanuman-dhara.jpg" alt="Hanuman Dhara"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Hanuman Dhara</h3>
                                 <div class="card-tagline">The Sacred Spring</div>
@@ -1283,9 +2344,8 @@
                                 <a href="#places" class="link-gold">Explore &rarr;</a>
                             </div>
                         </div>
-                        <!-- Card 4 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.4s;">
-                            <div class="card-img-wrapper"><img src="images/card-gupt-godavari.jpg" alt="Gupt Godavari" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.26s;">
+                            <div class="card-img-wrapper"><img src="images/card-gupt-godavari.jpg" alt="Gupt Godavari"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Gupt Godavari Caves</h3>
                                 <div class="card-tagline">The Mystical Caves</div>
@@ -1297,9 +2357,8 @@
                                 <a href="#places" class="link-gold">Explore &rarr;</a>
                             </div>
                         </div>
-                        <!-- Card 5 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.5s;">
-                            <div class="card-img-wrapper"><img src="images/card-sati-anusuya.jpg" alt="Sati Anusuya" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.33s;">
+                            <div class="card-img-wrapper"><img src="images/card-sati-anusuya.jpg" alt="Sati Anusuya"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Sati Anusuya Ashram</h3>
                                 <div class="card-tagline">Where Sita Received Teachings</div>
@@ -1311,9 +2370,8 @@
                                 <a href="#places" class="link-gold">Explore &rarr;</a>
                             </div>
                         </div>
-                        <!-- Card 6 -->
-                        <div class="service-card fade-in-up" style="transition-delay: 0.6s;">
-                            <div class="card-img-wrapper"><img src="images/card-sphatik-shila.jpg" alt="Sphatik Shila" class="warm-filter"></div>
+                        <div class="service-card fade-in-up" style="transition-delay: 0.40s;">
+                            <div class="card-img-wrapper"><img src="images/card-sphatik-shila.jpg" alt="Sphatik Shila"></div>
                             <div class="card-body">
                                 <h3 class="card-title">Sphatik Shila</h3>
                                 <div class="card-tagline">The Crystal Rock</div>
@@ -1329,15 +2387,14 @@
                 </div>
             </section>
 
-            <!-- Facilities Section -->
+            <!-- Facilities -->
             <section class="section-padding">
                 <div class="container">
                     <div class="text-center fade-in-up">
-                        <div class="divider-lotus">
-                            <svg viewBox="0 0 512 512"><path d="M256,0C157.9,0,67.6,44.9,0,111.4c17.1,52.2,49,99.5,93.6,138.8c42.5,37.5,91.8,61.7,143.2,74.5 C198.5,355.6,173.8,387,171,424c-1.2,16.5,4,32.7,14.6,45.3c11.9,14.2,29.3,22.2,47.8,22.2h45.2c18.5,0,35.9-8,47.8-22.2 c10.6-12.6,15.8-28.8,14.6-45.3c-2.7-36.9-27.4-68.3-65.8-99.2c51.4-12.7,100.7-37,143.2-74.5C463,210.9,494.9,163.6,512,111.4 C444.4,44.9,354.1,0,256,0z"/></svg>
-                        </div>
-                        <span class="eyebrow">Facilities & Services</span>
-                        <h2 class="section-title">For the Comfort of Devotees</h2>
+                        <div class="divider-om"><span>ॐ</span></div>
+                        <span class="eyebrow">Facilities &amp; Services</span>
+                        <h2 class="section-title">For the <span class="accent">Comfort</span> of Devotees</h2>
+                        <p class="section-subtitle">Premium amenities and thoughtful services for every pilgrim</p>
                     </div>
 
                     <div class="card-grid">
@@ -1397,73 +2454,78 @@
             <section class="section-padding horizontal-scroll-container">
                 <div class="container">
                     <div class="text-center fade-in-up">
-                        <h2 class="section-title">Explore Nearby Sacred Places</h2>
+                        <div class="divider-lotus">
+                            <svg viewBox="0 0 512 512"><path d="M256,0C157.9,0,67.6,44.9,0,111.4c17.1,52.2,49,99.5,93.6,138.8c42.5,37.5,91.8,61.7,143.2,74.5 C198.5,355.6,173.8,387,171,424c-1.2,16.5,4,32.7,14.6,45.3c11.9,14.2,29.3,22.2,47.8,22.2h45.2c18.5,0,35.9-8,47.8-22.2 c10.6-12.6,15.8-28.8,14.6-45.3c-2.7-36.9-27.4-68.3-65.8-99.2c51.4-12.7,100.7-37,143.2-74.5C463,210.9,494.9,163.6,512,111.4 C444.4,44.9,354.1,0,256,0z"/></svg>
+                        </div>
+                        <span class="eyebrow">Sacred Surroundings</span>
+                        <h2 class="section-title">Explore Nearby <span class="accent">Sacred</span> Places</h2>
+                        <p class="section-subtitle">Hidden gems and revered sites across the Chitrakoot region</p>
                     </div>
-                    
+
                     <div class="scroll-controls">
-                        <button class="scroll-btn" id="scrollLeft">&larr;</button>
-                        <button class="scroll-btn" id="scrollRight">&rarr;</button>
+                        <button class="scroll-btn" id="scrollLeft" aria-label="Scroll left">&larr;</button>
+                        <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">&rarr;</button>
                     </div>
 
                     <div class="scroll-wrapper" id="placesScroller">
                         <div class="place-card">
-                            <img src="images/place-janki-kund.jpg" alt="Janki Kund" class="warm-filter">
+                            <img src="images/place-janki-kund.jpg" alt="Janki Kund">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Janki Kund</h4>
                                 <p class="place-desc">Sacred bathing spot where Goddess Sita bathed during exile</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-bharat-milap.jpg" alt="Bharat Milap" class="warm-filter">
+                            <img src="images/place-bharat-milap.jpg" alt="Bharat Milap">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Bharat Milap</h4>
                                 <p class="place-desc">Where Bharata met Rama and begged him to return</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-kamtanath.jpg" alt="Kamtanath" class="warm-filter">
+                            <img src="images/place-kamtanath.jpg" alt="Kamtanath">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Kamtanath Temple</h4>
                                 <p class="place-desc">Main temple of Lord Kamtanath, principal deity</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-ganesh-bagh.jpg" alt="Ganesh Bagh" class="warm-filter">
+                            <img src="images/place-ganesh-bagh.jpg" alt="Ganesh Bagh">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Ganesh Bagh</h4>
                                 <p class="place-desc">Mini Khajuraho — 19th century Peshwa-era temple</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-matgajendranath.jpg" alt="Matgajendranath" class="warm-filter">
+                            <img src="images/place-matgajendranath.jpg" alt="Matgajendranath">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Matgajendranath</h4>
                                 <p class="place-desc">Ancient Shiva temple at Ramghat established by Brahma</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-lakshman-pahari.jpg" alt="Lakshman Pahari" class="warm-filter">
+                            <img src="images/place-lakshman-pahari.jpg" alt="Lakshman Pahari">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Lakshman Pahari</h4>
                                 <p class="place-desc">Hill where Lakshman guarded Rama and Sita</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-sita-rasoi.jpg" alt="Sita Rasoi" class="warm-filter">
+                            <img src="images/place-sita-rasoi.jpg" alt="Sita Rasoi">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Sita Rasoi</h4>
                                 <p class="place-desc">Hilltop site where Mata Sita cooked during exile</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-devangana.jpg" alt="Devangana" class="warm-filter">
+                            <img src="images/place-devangana.jpg" alt="Devangana">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Devangana</h4>
                                 <p class="place-desc">Sacred mountain in the Chitrakoot circuit</p>
                             </div>
                         </div>
                         <div class="place-card">
-                            <img src="images/place-dharkundi.jpg" alt="Dharkundi Ashram" class="warm-filter">
+                            <img src="images/place-dharkundi.jpg" alt="Dharkundi Ashram">
                             <div class="place-card-overlay">
                                 <h4 class="place-title">Dharkundi Ashram</h4>
                                 <p class="place-desc">Spiritual haven of Swami Paramanand</p>
@@ -1473,40 +2535,45 @@
                 </div>
             </section>
 
-            <!-- Festivals Section -->
+            <!-- Festivals -->
             <section class="section-padding dark-section">
                 <div class="container">
                     <div class="text-center fade-in-up">
-                        <h2 class="section-title">Festivals & Sacred Celebrations</h2>
-                        <br><br>
+                        <div class="divider-om"><span>ॐ</span></div>
+                        <span class="eyebrow">Sacred Calendar</span>
+                        <h2 class="section-title">Festivals &amp; <span class="accent">Sacred</span> Celebrations</h2>
+                        <p class="section-subtitle">Witness the divine pulse of Chitrakoot through its many sacred festivals</p>
                     </div>
                     <div class="card-grid">
                         <div class="festival-card fade-in-up">
-                            <img src="images/festival-ram-navami.jpg" alt="Ram Navami" class="warm-filter">
+                            <img src="images/festival-ram-navami.jpg" alt="Ram Navami">
                             <div class="fest-overlay">
                                 <span class="fest-month">March-April</span>
                                 <h3 class="fest-title">Ram Navami</h3>
                                 <div class="fest-desc">Grand celebrations marking Lord Rama's birth with special pujas, processions, and cultural programs at Ramghat.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
                             </div>
                         </div>
                         <div class="festival-card fade-in-up">
-                            <img src="images/festival-amavasya.jpg" alt="Amavasya Parikrama" class="warm-filter">
+                            <img src="images/festival-amavasya.jpg" alt="Amavasya Parikrama">
                             <div class="fest-overlay">
                                 <span class="fest-month">Every Month</span>
                                 <h3 class="fest-title">Amavasya Parikrama</h3>
                                 <div class="fest-desc">Lakhs gather every new moon to perform Kamadgiri Parikrama. Somwati Amavasya is most significant.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
                             </div>
                         </div>
                         <div class="festival-card fade-in-up">
-                            <img src="images/festival-deepavali.jpg" alt="Deepavali" class="warm-filter">
+                            <img src="images/festival-deepavali.jpg" alt="Deepavali">
                             <div class="fest-overlay">
                                 <span class="fest-month">October-November</span>
                                 <h3 class="fest-title">Deepavali</h3>
                                 <div class="fest-desc">The grandest celebration — entire Ramghat and Mandakini banks illuminated with thousands of diyas.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
                             </div>
                         </div>
                     </div>
-                    <div class="text-center" style="margin-top: 40px;">
+                    <div class="text-center" style="margin-top: 50px;">
                         <a href="#festivals" class="btn btn-outline">View All Festivals</a>
                     </div>
                 </div>
@@ -1516,22 +2583,27 @@
             <section class="section-padding">
                 <div class="container">
                     <div class="text-center fade-in-up">
+                        <div class="divider-trishul">
+                            <i></i>
+                            <svg viewBox="0 0 24 24"><path d="M12 0L8 8h2v6H6v8h12v-8h-4V8h2L12 0z"/></svg>
+                            <i></i>
+                        </div>
                         <span class="eyebrow">Plan Your Pilgrimage</span>
-                        <h2 class="section-title">How to Reach Chitrakoot</h2>
-                        <br><br>
+                        <h2 class="section-title">How to Reach <span class="accent">Chitrakoot</span></h2>
+                        <p class="section-subtitle">Easily accessible by air, rail, and road from across India</p>
                     </div>
-                    <div class="info-columns fade-in-up">
-                        <div>
+                    <div class="info-columns">
+                        <div class="info-col fade-in-up">
                             <div class="info-icon">✈️</div>
                             <h4>By Air</h4>
                             <p>Nearest: Khajuraho Airport (167 km), Prayagraj Airport (111 km). Taxi/bus available from airports to Chitrakoot.</p>
                         </div>
-                        <div>
+                        <div class="info-col fade-in-up" style="transition-delay: 0.1s;">
                             <div class="info-icon">🚂</div>
                             <h4>By Rail</h4>
                             <p>Chitrakoot Dham Karwi Station (8-12 km), Manikpur Junction (30 km), Satna Station (78 km). Connected to major cities.</p>
                         </div>
-                        <div>
+                        <div class="info-col fade-in-up" style="transition-delay: 0.2s;">
                             <div class="info-icon">🚗</div>
                             <h4>By Road</h4>
                             <p>NH35 passes through Chitrakoot. From Satna: 78 km, Prayagraj: 115 km. State buses from Satna, Varanasi, Lucknow.</p>
@@ -1548,36 +2620,45 @@
              PAGE 2: ABOUT
              ========================================== -->
         <div id="page-about" class="page-view">
-            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.6), rgba(26,15,0,0.8)), url('images/about-temple-history.jpg');">
+            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.55), rgba(26,15,0,0.85)), url('images/about-temple-history.jpg');">
                 <div class="hero-content">
-                    <h1 class="hero-title">About Chitrakoot Dham</h1>
-                    <div class="hero-subtitle">The Sacred Land Where Ramayana Comes Alive</div>
+                    <span class="hero-label">॥ श्री राम जय राम ॥</span>
+                    <h1 class="hero-title"><span class="glow">About Chitrakoot Dham</span></h1>
+                    <div class="hero-subtitle">Where Ramayana Comes Alive</div>
                 </div>
             </div>
-            
-            <section class="section-padding container">
-                <div class="about-grid">
-                    <div class="about-image-wrapper">
-                        <img src="images/about-ramayana-scene.jpg" alt="Ramayana Scene" class="warm-filter">
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="about-grid">
+                        <div class="about-image-wrapper fade-in-up">
+                            <img src="images/about-ramayana-scene.jpg" alt="Ramayana Scene">
+                        </div>
+                        <div class="about-text fade-in-up">
+                            <span class="eyebrow">History &amp; Mythology</span>
+                            <h2 class="section-title">The <span class="accent">Eternal</span> Story</h2>
+                            <p>Chitrakoot falls in the northern Vindhya Range, spread across Uttar Pradesh and Madhya Pradesh. The MP side comes under Satna district. The name 'Chitrakoot' comes from Sanskrit — 'Chitra' (Ashoka tree) + 'Koot' (peak), as the region was once abundant with Ashoka trees.</p>
+                            <p>It is believed that Lord Rama, Sita and Lakshman spent eleven and a half years of their fourteen-year exile in these divine forests. This is where the historic Bharat Milap happened — Bharata came from Ayodhya to persuade Rama to return to rule the kingdom. When Lord Rama gently refused, Bharata took his wooden sandals (Khadau) to place on the throne and rule in Rama's name.</p>
+                            <p>Lord Rama performed the last rites (Shraddh) of his father Dasharatha here. Goswami Tulsidas composed major portions of Ramcharitmanas sitting at Ramghat. Ancient sages — Maharishi Atri, Sati Anusuya, Agastya — performed intense tapasya here. The Mandakini River itself was brought down by Sati Anusuya's severe penance.</p>
+                        </div>
                     </div>
-                    <div class="about-text">
-                        <h2 class="section-title">History & Mythology</h2>
-                        <p>Chitrakoot falls in the northern Vindhya Range, spread across Uttar Pradesh and Madhya Pradesh. The MP side comes under Satna district. The name 'Chitrakoot' comes from Sanskrit — 'Chitra' (Ashoka tree) + 'Koot' (peak), as the region was once abundant with Ashoka trees.</p>
-                        <p>It is believed that Lord Rama, Sita and Lakshman spent eleven and a half years of their fourteen-year exile in these divine forests. This is where the historic Bharat Milap happened — Bharata came from Ayodhya to persuade Rama to return to rule the kingdom. When Lord Rama gently refused, Bharata took his wooden sandals (Khadau) to place on the throne and rule in Rama's name.</p>
-                        <p>Lord Rama performed the last rites (Shraddh) of his father Dasharatha here. Goswami Tulsidas composed major portions of Ramcharitmanas sitting at Ramghat. Ancient sages — Maharishi Atri, Sati Anusuya, Agastya — performed intense tapasya here. The Mandakini River itself was brought down by Sati Anusuya's severe penance.</p>
+
+                    <div class="text-center fade-in-up" style="margin-top: 100px;">
+                        <div class="divider-lotus">
+                            <svg viewBox="0 0 512 512"><path d="M256,0C157.9,0,67.6,44.9,0,111.4c17.1,52.2,49,99.5,93.6,138.8c42.5,37.5,91.8,61.7,143.2,74.5 C198.5,355.6,173.8,387,171,424c-1.2,16.5,4,32.7,14.6,45.3c11.9,14.2,29.3,22.2,47.8,22.2h45.2c18.5,0,35.9-8,47.8-22.2 c10.6-12.6,15.8-28.8,14.6-45.3c-2.7-36.9-27.4-68.3-65.8-99.2c51.4-12.7,100.7-37,143.2-74.5C463,210.9,494.9,163.6,512,111.4 C444.4,44.9,354.1,0,256,0z"/></svg>
+                        </div>
+                        <span class="eyebrow">Why Chitrakoot</span>
+                        <h2 class="section-title">Divine <span class="accent">Significance</span></h2>
                     </div>
-                </div>
-                
-                <br><br><br>
-                <h3 class="section-title text-center">Divine Significance</h3>
-                <br>
-                <div class="info-columns" style="text-align: left;">
-                    <div class="highlight-box" style="margin-top:0;">✦ Only place where all three Hindu deities — Brahma, Vishnu, Mahesh — took incarnation</div>
-                    <div class="highlight-box" style="margin-top:0;">✦ Bhagwan Kamtanath (Lord Rama) is the Ishta Devta of entire Chitrakoot</div>
-                    <div class="highlight-box" style="margin-top:0;">✦ Kamadgiri Parikrama Marg developed by Bundela Queen in 1725</div>
-                    <div class="highlight-box" style="margin-top:0;">✦ Evening Mandakini Aarti at Ramghat rivals the famous Ganga Aarti of Varanasi</div>
-                    <div class="highlight-box" style="margin-top:0;">✦ Chitrakoot Parvat Mala includes Kamadgiri, Hanuman Dhara, and Lakshman Pahari</div>
-                    <div class="highlight-box" style="margin-top:0;">✦ Ganesh Bagh is known as 'Mini Khajuraho' for its Peshwa-era carvings</div>
+
+                    <div class="significance-grid">
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Only place where all three Hindu deities — Brahma, Vishnu, Mahesh — took incarnation</div>
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Bhagwan Kamtanath (Lord Rama) is the Ishta Devta of entire Chitrakoot</div>
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Kamadgiri Parikrama Marg developed by Bundela Queen in 1725</div>
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Evening Mandakini Aarti at Ramghat rivals the famous Ganga Aarti of Varanasi</div>
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Chitrakoot Parvat Mala includes Kamadgiri, Hanuman Dhara, and Lakshman Pahari</div>
+                        <div class="significance-card fade-in-up"><span class="mark">✦</span> Ganesh Bagh is known as 'Mini Khajuraho' for its Peshwa-era carvings</div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -1586,102 +2667,112 @@
              PAGE 3: PLACES
              ========================================== -->
         <div id="page-places" class="page-view">
-            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.6), rgba(26,15,0,0.8)), url('images/hero-kamadgiri-temple.jpg');">
+            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.55), rgba(26,15,0,0.85)), url('images/hero-kamadgiri-temple.jpg');">
                 <div class="hero-content">
-                    <h1 class="hero-title">Sacred Places of Chitrakoot</h1>
+                    <span class="hero-label">॥ हर हर महादेव ॥</span>
+                    <h1 class="hero-title"><span class="glow">Sacred Places of Chitrakoot</span></h1>
+                    <div class="hero-subtitle">Footprints of Ramayana</div>
                 </div>
             </div>
 
-            <section class="section-padding container">
-                <!-- Place 1 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="C1.png" alt="Kamadgiri"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Kamadgiri Parikrama</h2>
-                        <div class="card-tagline">The Hill That Fulfills All Desires</div>
-                        <p>Kamadgiri, the original Chitrakoot, is a forested hill of prime religious significance. It is believed to be the holy embodiment of Lord Rama. Devotees perform a 5 km parikrama (circumambulation) around it to seek blessings. The path features numerous temples, including the main Kamtanath temple.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Distance</span><strong>Central Chitrakoot</strong></div>
-                            <div class="info-item"><span>Time Required</span><strong>2-3 Hours</strong></div>
-                            <div class="info-item"><span>Entry Fee</span><strong>Free</strong></div>
-                            <div class="info-item"><span>Facilities</span><strong>Wheelchair available</strong></div>
+            <section class="section-padding">
+                <div class="container">
+                    <!-- Place 1 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="C1.png" alt="Kamadgiri"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 01</span>
+                            <h2 class="section-title">Kamadgiri <span class="accent">Parikrama</span></h2>
+                            <div class="card-tagline">The Hill That Fulfills All Desires</div>
+                            <p>Kamadgiri, the original Chitrakoot, is a forested hill of prime religious significance. It is believed to be the holy embodiment of Lord Rama. Devotees perform a 5 km parikrama (circumambulation) around it to seek blessings. The path features numerous temples, including the main Kamtanath temple.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Distance</span><strong>Central Chitrakoot</strong></div>
+                                <div class="info-item"><span>Time Required</span><strong>2-3 Hours</strong></div>
+                                <div class="info-item"><span>Entry Fee</span><strong>Free</strong></div>
+                                <div class="info-item"><span>Facilities</span><strong>Wheelchair available</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
                         </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
                     </div>
-                </div>
 
-                <!-- Place 2 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="images/card-ramghat-aarti.jpg" alt="Ramghat"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Ramghat & Mandakini Aarti</h2>
-                        <div class="card-tagline">The Divine Evening Aarti</div>
-                        <p>The bustling Ramghat is where Lord Rama, Sita, and Lakshman are believed to have bathed. The evening aarti here is a breathtaking spectacle, with priests offering prayers to the Mandakini river amidst chanting. It's the spiritual heart of the town.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Aarti Timing</span><strong>Daily at 6:00 PM</strong></div>
-                            <div class="info-item"><span>Boating</span><strong>Available (₹150-200)</strong></div>
+                    <!-- Place 2 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="images/card-ramghat-aarti.jpg" alt="Ramghat"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 02</span>
+                            <h2 class="section-title">Ramghat &amp; <span class="accent">Mandakini</span> Aarti</h2>
+                            <div class="card-tagline">The Divine Evening Aarti</div>
+                            <p>The bustling Ramghat is where Lord Rama, Sita, and Lakshman are believed to have bathed. The evening aarti here is a breathtaking spectacle, with priests offering prayers to the Mandakini river amidst chanting. It's the spiritual heart of the town.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Aarti Timing</span><strong>Daily at 6:00 PM</strong></div>
+                                <div class="info-item"><span>Boating</span><strong>Available (₹150-200)</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
                         </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
                     </div>
-                </div>
 
-                <!-- Place 3 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="images/card-hanuman-dhara.jpg" alt="Hanuman Dhara"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Hanuman Dhara</h2>
-                        <div class="card-tagline">The Sacred Spring</div>
-                        <p>Located on a steep hill, Hanuman Dhara features a natural spring falling over an idol of Lord Hanuman. It is said Lord Rama created this spring to soothe Hanuman's anger and heat after he burned Lanka. The climb of 355 stairs offers panoramic views.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Distance</span><strong>4 km from Ramghat</strong></div>
-                            <div class="info-item"><span>Climb</span><strong>355 Steps</strong></div>
+                    <!-- Place 3 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="images/card-hanuman-dhara.jpg" alt="Hanuman Dhara"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 03</span>
+                            <h2 class="section-title">Hanuman <span class="accent">Dhara</span></h2>
+                            <div class="card-tagline">The Sacred Spring</div>
+                            <p>Located on a steep hill, Hanuman Dhara features a natural spring falling over an idol of Lord Hanuman. It is said Lord Rama created this spring to soothe Hanuman's anger and heat after he burned Lanka. The climb of 355 stairs offers panoramic views.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Distance</span><strong>4 km from Ramghat</strong></div>
+                                <div class="info-item"><span>Climb</span><strong>355 Steps</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
                         </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
                     </div>
-                </div>
-                
-                <!-- Place 4 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="images/card-gupt-godavari.jpg" alt="Gupt Godavari"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Gupt Godavari Caves</h2>
-                        <div class="card-tagline">The Mystical Caves</div>
-                        <p>A pair of natural caves where a subterranean stream flows. Legend says the Godavari river secretly emerged here to wash the feet of Lord Rama. The larger cave features two natural throne-like rocks where Rama and Lakshman held court.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Distance</span><strong>18 km from town</strong></div>
-                            <div class="info-item"><span>Feature</span><strong>Knee-deep water inside</strong></div>
-                        </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
-                    </div>
-                </div>
 
-                <!-- Place 5 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="images/card-sati-anusuya.jpg" alt="Sati Anusuya"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Sati Anusuya Ashram</h2>
-                        <div class="card-tagline">Where Sita Received Teachings</div>
-                        <p>Located deep in the forest, this is where Sage Atri and his wife Sati Anusuya meditated. Anusuya imparted the teachings of 'Pativrata Dharma' to Mata Sita here. The Mandakini river is believed to have originated here due to Anusuya's penance.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Distance</span><strong>18 km from Ramghat</strong></div>
-                            <div class="info-item"><span>Attraction</span><strong>Beautiful forest drive</strong></div>
+                    <!-- Place 4 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="images/card-gupt-godavari.jpg" alt="Gupt Godavari"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 04</span>
+                            <h2 class="section-title">Gupt Godavari <span class="accent">Caves</span></h2>
+                            <div class="card-tagline">The Mystical Caves</div>
+                            <p>A pair of natural caves where a subterranean stream flows. Legend says the Godavari river secretly emerged here to wash the feet of Lord Rama. The larger cave features two natural throne-like rocks where Rama and Lakshman held court.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Distance</span><strong>18 km from town</strong></div>
+                                <div class="info-item"><span>Feature</span><strong>Knee-deep water inside</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
                         </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
                     </div>
-                </div>
 
-                <!-- Place 6 -->
-                <div class="detail-section">
-                    <div class="detail-image"><img src="images/card-sphatik-shila.jpg" alt="Sphatik Shila"></div>
-                    <div class="detail-content">
-                        <h2 class="section-title">Sphatik Shila</h2>
-                        <div class="card-tagline">The Crystal Rock Bearing Divine Footprints</div>
-                        <p>Two massive polished rocks on Mandakini's bank bearing footprints of Lord Rama and Sita. This picturesque spot is where Jayant (Indra's son), disguised as a crow, pecked Sita's feet, angering Lord Rama.</p>
-                        <div class="info-grid">
-                            <div class="info-item"><span>Location</span><strong>Near Janki Kund</strong></div>
-                            <div class="info-item"><span>Significance</span><strong>Footprints on rock</strong></div>
+                    <!-- Place 5 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="images/card-sati-anusuya.jpg" alt="Sati Anusuya"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 05</span>
+                            <h2 class="section-title">Sati Anusuya <span class="accent">Ashram</span></h2>
+                            <div class="card-tagline">Where Sita Received Teachings</div>
+                            <p>Located deep in the forest, this is where Sage Atri and his wife Sati Anusuya meditated. Anusuya imparted the teachings of 'Pativrata Dharma' to Mata Sita here. The Mandakini river is believed to have originated here due to Anusuya's penance.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Distance</span><strong>18 km from Ramghat</strong></div>
+                                <div class="info-item"><span>Attraction</span><strong>Beautiful forest drive</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
                         </div>
-                        <a href="#map" class="btn btn-outline">View on Map</a>
+                    </div>
+
+                    <!-- Place 6 -->
+                    <div class="detail-section fade-in-up">
+                        <div class="detail-image"><img src="images/card-sphatik-shila.jpg" alt="Sphatik Shila"></div>
+                        <div class="detail-content">
+                            <span class="eyebrow">Sacred Place 06</span>
+                            <h2 class="section-title">Sphatik <span class="accent">Shila</span></h2>
+                            <div class="card-tagline">The Crystal Rock Bearing Divine Footprints</div>
+                            <p>Two massive polished rocks on Mandakini's bank bearing footprints of Lord Rama and Sita. This picturesque spot is where Jayant (Indra's son), disguised as a crow, pecked Sita's feet, angering Lord Rama.</p>
+                            <div class="info-grid">
+                                <div class="info-item"><span>Location</span><strong>Near Janki Kund</strong></div>
+                                <div class="info-item"><span>Significance</span><strong>Footprints on rock</strong></div>
+                            </div>
+                            <a href="#contact" class="btn btn-outline">View on Map</a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1691,55 +2782,63 @@
              PAGE 4: FACILITIES
              ========================================== -->
         <div id="page-facilities" class="page-view">
-            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.6), rgba(26,15,0,0.8)), url('images/facility-mpt-bungalow.jpg');">
+            <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.55), rgba(26,15,0,0.85)), url('images/facility-mpt-bungalow.jpg');">
                 <div class="hero-content">
-                    <h1 class="hero-title">Facilities & Services</h1>
+                    <span class="hero-label">॥ अतिथि देवो भव ॥</span>
+                    <h1 class="hero-title"><span class="glow">Facilities &amp; Services</span></h1>
+                    <div class="hero-subtitle">Comfort For Every Devotee</div>
                 </div>
             </div>
-            
-            <section class="section-padding container">
-                <div class="card-grid">
-                    <!-- Complete 6 facility cards here, full size -->
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-mpt-bungalow.jpg" alt="MPT Bungalow"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">MPT Tourist Bungalow</h3>
-                            <p class="card-desc">MPSTDC operates a comfortable Tourist Bungalow with clean accommodation, home-like food, and exceptional hospitality for pilgrims and tourists. AC and Non-AC rooms available.</p>
-                        </div>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center fade-in-up" style="margin-bottom: 60px;">
+                        <span class="eyebrow">Our Services</span>
+                        <h2 class="section-title">Pilgrimage <span class="accent">Made Easy</span></h2>
+                        <p class="section-subtitle">From comfortable stays to convenient transport — everything thoughtfully arranged</p>
                     </div>
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-arogyadham.jpg" alt="Arogyadham"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">Arogyadham — Ayurveda</h3>
-                            <p class="card-desc">Located 5 km from Ramghat, offering high-quality Ayurvedic treatments, beautiful gardens, and a dedicated yoga centre for daily sessions and wellness retreats.</p>
+                    <div class="card-grid">
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-mpt-bungalow.jpg" alt="MPT Bungalow"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">MPT Tourist Bungalow</h3>
+                                <p class="card-desc">MPSTDC operates a comfortable Tourist Bungalow with clean accommodation, home-like food, and exceptional hospitality for pilgrims and tourists. AC and Non-AC rooms available.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-dharamshala.jpg" alt="Dharamshala"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">Dharamshalas</h3>
-                            <p class="card-desc">Multiple dharamshalas near Ramghat and Janki Kund — Mandakini Bhawan, Kansal Bhavan, Jaipuria Smriti Bhawan offering economical and clean stays for devotees.</p>
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-arogyadham.jpg" alt="Arogyadham"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Arogyadham — Ayurveda</h3>
+                                <p class="card-desc">Located 5 km from Ramghat, offering high-quality Ayurvedic treatments, beautiful gardens, and a dedicated yoga centre for daily sessions and wellness retreats.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-ropeway.jpg" alt="Ropeway"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">Lakshman Pahari Ropeway</h3>
-                            <p class="card-desc">264-meter ropeway with 6 trolleys reaches the hilltop in 2 minutes. Fare: ₹80 adults, ₹40 children. Replaces the difficult 400-step climb for elderly pilgrims.</p>
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-dharamshala.jpg" alt="Dharamshala"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Dharamshalas</h3>
+                                <p class="card-desc">Multiple dharamshalas near Ramghat and Janki Kund — Mandakini Bhawan, Kansal Bhavan, Jaipuria Smriti Bhawan offering economical and clean stays for devotees.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-boating.jpg" alt="Boating"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">Mandakini River Boating</h3>
-                            <p class="card-desc">Colorful LED-decorated boats at Ramghat. Magical during evening aarti and sunset. View both UP and MP ghats from the river. ₹150-200 per person.</p>
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-ropeway.jpg" alt="Ropeway"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Lakshman Pahari Ropeway</h3>
+                                <p class="card-desc">264-meter ropeway with 6 trolleys reaches the hilltop in 2 minutes. Fare: ₹80 adults, ₹40 children. Replaces the difficult 400-step climb for elderly pilgrims.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-img-wrapper"><img src="images/facility-wheelchair.jpg" alt="Wheelchair"></div>
-                        <div class="card-body">
-                            <h3 class="card-title">Wheelchair Parikrama</h3>
-                            <p class="card-desc">For elderly, disabled, and children — wheelchair facility for the 5 km Kamadgiri circumambulation at ₹200. Ensures everyone can experience the sacred Parikrama.</p>
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-boating.jpg" alt="Boating"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Mandakini River Boating</h3>
+                                <p class="card-desc">Colorful LED-decorated boats at Ramghat. Magical during evening aarti and sunset. View both UP and MP ghats from the river. ₹150-200 per person.</p>
+                            </div>
+                        </div>
+                        <div class="service-card fade-in-up">
+                            <div class="card-img-wrapper"><img src="images/facility-wheelchair.jpg" alt="Wheelchair"></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Wheelchair Parikrama</h3>
+                                <p class="card-desc">For elderly, disabled, and children — wheelchair facility for the 5 km Kamadgiri circumambulation at ₹200. Ensures everyone can experience the sacred Parikrama.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1749,21 +2848,78 @@
         <!-- ==========================================
              PAGE 5: FESTIVALS
              ========================================== -->
-        <div id="page-festivals" class="page-view dark-section mandala-bg">
+        <div id="page-festivals" class="page-view">
             <div class="page-hero" style="background-image: linear-gradient(rgba(26,15,0,0.5), rgba(26,15,0,0.9)), url('images/festival-deepavali.jpg');">
                 <div class="hero-content">
-                    <h1 class="hero-title">Festivals & Sacred Celebrations</h1>
+                    <span class="hero-label">॥ उत्सव ॥</span>
+                    <h1 class="hero-title"><span class="glow">Festivals &amp; Sacred Celebrations</span></h1>
+                    <div class="hero-subtitle">A Year of Divine Joy</div>
                 </div>
             </div>
-            
-            <section class="section-padding container">
-                <div class="card-grid">
-                    <div class="festival-card"><img src="images/festival-ram-navami.jpg" alt=""><div class="fest-overlay"><span class="fest-month">March-April</span><h3 class="fest-title">Ram Navami</h3><div class="fest-desc">Grand celebrations marking Lord Rama's birth with special pujas, processions, and cultural programs at Ramghat and Kamadgiri.</div></div></div>
-                    <div class="festival-card"><img src="images/festival-amavasya.jpg" alt=""><div class="fest-overlay"><span class="fest-month">Every Month</span><h3 class="fest-title">Amavasya Parikrama</h3><div class="fest-desc">Lakhs of devotees gather every new moon to perform Kamadgiri Parikrama and take holy dip at Ramghat.</div></div></div>
-                    <div class="festival-card"><img src="images/festival-deepavali.jpg" alt=""><div class="fest-overlay"><span class="fest-month">Oct-Nov</span><h3 class="fest-title">Deepavali</h3><div class="fest-desc">The grandest celebration — entire Ramghat and Mandakini banks illuminated with thousands of diyas creating a divine spectacle.</div></div></div>
-                    <div class="festival-card"><img src="images/festival-makar-sankranti.jpg" alt=""><div class="fest-overlay"><span class="fest-month">January</span><h3 class="fest-title">Makar Sankranti</h3><div class="fest-desc">Special bathing festival at Ramghat with devotees taking holy dips in the Mandakini. Cultural programs and religious gatherings.</div></div></div>
-                    <div class="festival-card"><img src="images/festival-sharad-purnima.jpg" alt=""><div class="fest-overlay"><span class="fest-month">October</span><h3 class="fest-title">Sharad Purnima</h3><div class="fest-desc">Full moon celebrations with special evening aarti. The moonlit Mandakini River creates a magical atmosphere.</div></div></div>
-                    <div class="festival-card"><img src="images/festival-navratri.jpg" alt=""><div class="fest-overlay"><span class="fest-month">Apr & Oct</span><h3 class="fest-title">Navratri</h3><div class="fest-desc">Celebrated with great passion at Sati Anusuya Ashram with special pujas, bhandaras, kirtans, and cultural programs.</div></div></div>
+
+            <section class="section-padding dark-section mandala-bg">
+                <div class="container">
+                    <div class="text-center fade-in-up" style="margin-bottom: 60px;">
+                        <span class="eyebrow">The Sacred Calendar</span>
+                        <h2 class="section-title">Six <span class="accent">Holy</span> Celebrations</h2>
+                        <p class="section-subtitle">Witness Chitrakoot at its most divine — moments where the entire town transforms into a living temple</p>
+                    </div>
+                    <div class="card-grid">
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-ram-navami.jpg" alt="Ram Navami">
+                            <div class="fest-overlay">
+                                <span class="fest-month">March-April</span>
+                                <h3 class="fest-title">Ram Navami</h3>
+                                <div class="fest-desc">Grand celebrations marking Lord Rama's birth with special pujas, processions, and cultural programs at Ramghat and Kamadgiri.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-amavasya.jpg" alt="Amavasya Parikrama">
+                            <div class="fest-overlay">
+                                <span class="fest-month">Every Month</span>
+                                <h3 class="fest-title">Amavasya Parikrama</h3>
+                                <div class="fest-desc">Lakhs of devotees gather every new moon to perform Kamadgiri Parikrama and take holy dip at Ramghat.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-deepavali.jpg" alt="Deepavali">
+                            <div class="fest-overlay">
+                                <span class="fest-month">Oct-Nov</span>
+                                <h3 class="fest-title">Deepavali</h3>
+                                <div class="fest-desc">The grandest celebration — entire Ramghat and Mandakini banks illuminated with thousands of diyas creating a divine spectacle.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-makar-sankranti.jpg" alt="Makar Sankranti">
+                            <div class="fest-overlay">
+                                <span class="fest-month">January</span>
+                                <h3 class="fest-title">Makar Sankranti</h3>
+                                <div class="fest-desc">Special bathing festival at Ramghat with devotees taking holy dips in the Mandakini. Cultural programs and religious gatherings.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-sharad-purnima.jpg" alt="Sharad Purnima">
+                            <div class="fest-overlay">
+                                <span class="fest-month">October</span>
+                                <h3 class="fest-title">Sharad Purnima</h3>
+                                <div class="fest-desc">Full moon celebrations with special evening aarti. The moonlit Mandakini River creates a magical atmosphere.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="festival-card fade-in-up">
+                            <img src="images/festival-navratri.jpg" alt="Navratri">
+                            <div class="fest-overlay">
+                                <span class="fest-month">Apr &amp; Oct</span>
+                                <h3 class="fest-title">Navratri</h3>
+                                <div class="fest-desc">Celebrated with great passion at Sati Anusuya Ashram with special pujas, bhandaras, kirtans, and cultural programs.</div>
+                                <span class="fest-cta">Read More &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -1772,28 +2928,38 @@
              PAGE 6: GALLERY
              ========================================== -->
         <div id="page-gallery" class="page-view">
-            <div class="page-hero" style="height: 30vh; min-height: 250px; background-color: var(--color-bg-dark);">
+            <div class="page-hero" style="height: 38vh; min-height: 300px; background: radial-gradient(ellipse at center, rgba(196, 90, 0, 0.25) 0%, var(--color-bg-dark) 70%);">
                 <div class="hero-content">
-                    <h1 class="hero-title">Gallery</h1>
+                    <span class="hero-label">॥ दर्शन ॥</span>
+                    <h1 class="hero-title"><span class="glow">Gallery</span></h1>
                     <div class="hero-subtitle">Divine Glimpses of Chitrakoot</div>
                 </div>
             </div>
-            
-            <section class="section-padding container">
-                <div class="gallery-grid" id="galleryGrid">
-                    <!-- Gallery Items populated by JS to use exact paths -->
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-1.jpg')"><img src="images/gallery-1.jpg" alt="Gallery Image 1"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-2.jpg')"><img src="images/gallery-2.jpg" alt="Gallery Image 2"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-3.jpg')"><img src="images/gallery-3.jpg" alt="Gallery Image 3"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-4.jpg')"><img src="images/gallery-4.jpg" alt="Gallery Image 4"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-5.jpg')"><img src="images/gallery-5.jpg" alt="Gallery Image 5"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-6.jpg')"><img src="images/gallery-6.jpg" alt="Gallery Image 6"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-7.jpg')"><img src="images/gallery-7.jpg" alt="Gallery Image 7"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-8.jpg')"><img src="images/gallery-8.jpg" alt="Gallery Image 8"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-9.jpg')"><img src="images/gallery-9.jpg" alt="Gallery Image 9"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-10.jpg')"><img src="images/gallery-10.jpg" alt="Gallery Image 10"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-11.jpg')"><img src="images/gallery-11.jpg" alt="Gallery Image 11"><div class="gallery-overlay"><span>View</span></div></div>
-                    <div class="gallery-item" onclick="openLightbox('images/gallery-12.jpg')"><img src="images/gallery-12.jpg" alt="Gallery Image 12"><div class="gallery-overlay"><span>View</span></div></div>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="gallery-filters fade-in-up">
+                        <button class="filter-btn active" data-filter="all">All Glimpses</button>
+                        <button class="filter-btn" data-filter="ghats">Ghats &amp; River</button>
+                        <button class="filter-btn" data-filter="temples">Temples</button>
+                        <button class="filter-btn" data-filter="nature">Nature</button>
+                        <button class="filter-btn" data-filter="festivals">Festivals</button>
+                    </div>
+
+                    <div class="gallery-grid" id="galleryGrid">
+                        <div class="gallery-item" data-cat="ghats" onclick="openLightbox(0)"><img src="images/gallery-1.jpg" alt="Gallery Image 1"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="temples" onclick="openLightbox(1)"><img src="images/gallery-2.jpg" alt="Gallery Image 2"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="festivals" onclick="openLightbox(2)"><img src="images/gallery-3.jpg" alt="Gallery Image 3"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="nature" onclick="openLightbox(3)"><img src="images/gallery-4.jpg" alt="Gallery Image 4"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="ghats" onclick="openLightbox(4)"><img src="images/gallery-5.jpg" alt="Gallery Image 5"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="temples" onclick="openLightbox(5)"><img src="images/gallery-6.jpg" alt="Gallery Image 6"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="nature" onclick="openLightbox(6)"><img src="images/gallery-7.jpg" alt="Gallery Image 7"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="festivals" onclick="openLightbox(7)"><img src="images/gallery-8.jpg" alt="Gallery Image 8"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="temples" onclick="openLightbox(8)"><img src="images/gallery-9.jpg" alt="Gallery Image 9"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="ghats" onclick="openLightbox(9)"><img src="images/gallery-10.jpg" alt="Gallery Image 10"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="nature" onclick="openLightbox(10)"><img src="images/gallery-11.jpg" alt="Gallery Image 11"><div class="gallery-overlay"><span>View</span></div></div>
+                        <div class="gallery-item" data-cat="festivals" onclick="openLightbox(11)"><img src="images/gallery-12.jpg" alt="Gallery Image 12"><div class="gallery-overlay"><span>View</span></div></div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -1802,35 +2968,105 @@
              PAGE 7: CONTACT
              ========================================== -->
         <div id="page-contact" class="page-view">
-            <div class="page-hero" style="height: 30vh; min-height: 250px; background-color: var(--color-bg-dark);">
+            <div class="page-hero" style="height: 38vh; min-height: 300px; background: radial-gradient(ellipse at center, rgba(196, 90, 0, 0.25) 0%, var(--color-bg-dark) 70%);">
                 <div class="hero-content">
-                    <h1 class="hero-title">Contact & How to Reach</h1>
+                    <span class="hero-label">॥ संपर्क ॥</span>
+                    <h1 class="hero-title"><span class="glow">Contact &amp; How to Reach</span></h1>
+                    <div class="hero-subtitle">Plan Your Sacred Journey</div>
                 </div>
             </div>
-            
-            <section class="section-padding container">
-                <div class="contact-card">
-                    <h2 class="section-title">Shri Chitrakoot Dham</h2>
-                    <p style="font-size: 18px; color: var(--color-text-muted); margin-bottom: 20px;">Satna District, Madhya Pradesh — 485331</p>
-                    <div class="divider-lotus">
-                        <svg viewBox="0 0 512 512"><path d="M256,0C157.9,0,67.6,44.9,0,111.4c17.1,52.2,49,99.5,93.6,138.8c42.5,37.5,91.8,61.7,143.2,74.5 C198.5,355.6,173.8,387,171,424c-1.2,16.5,4,32.7,14.6,45.3c11.9,14.2,29.3,22.2,47.8,22.2h45.2c18.5,0,35.9-8,47.8-22.2 c10.6-12.6,15.8-28.8,14.6-45.3c-2.7-36.9-27.4-68.3-65.8-99.2c51.4-12.7,100.7-37,143.2-74.5C463,210.9,494.9,163.6,512,111.4 C444.4,44.9,354.1,0,256,0z"/></svg>
-                    </div>
-                    <p><strong>Tourism Office:</strong> MPSTDC Chitrakoot Tourism</p>
-                    <p><strong>Administration:</strong> District Collector Office, Satna</p>
-                    <p><strong>Website:</strong> satna.nic.in</p>
-                    <p style="color: #d32f2f; font-weight: bold; margin-top: 10px;">Emergency: 112</p>
-                </div>
 
-                <div class="map-wrapper">
-                    <img src="images/map-chitrakoot.jpg" alt="Chitrakoot Map">
-                    <div class="map-overlay">View on Google Maps &rarr;</div>
-                </div>
-                
-                <br><br>
-                <div class="info-columns">
-                    <div class="highlight-box">
-                        <h4 style="margin-bottom: 10px;">Visitor Tips</h4>
-                        <p style="font-weight: normal; font-size: 14px;"><strong>Best Time:</strong> October to March<br><strong>Dress Code:</strong> Modest attire for temples<br><strong>Food:</strong> Strictly vegetarian only<br><strong>Shopping:</strong> Wood carvings, lacquered turnery</p>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="contact-grid">
+                        <div class="contact-card fade-in-up">
+                            <span class="eyebrow">Get in Touch</span>
+                            <h2 class="section-title">Shri <span class="accent">Chitrakoot</span> Dham</h2>
+                            <p style="color: var(--color-text-muted); font-style: italic; margin-bottom: 24px;">Satna District, Madhya Pradesh — 485331</p>
+
+                            <div class="contact-info-row">
+                                <div class="contact-icon">🛕</div>
+                                <div>
+                                    <strong>Tourism Office</strong>
+                                    <p>MPSTDC Chitrakoot Tourism</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-row">
+                                <div class="contact-icon">🏛</div>
+                                <div>
+                                    <strong>Administration</strong>
+                                    <p>District Collector Office, Satna</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-row">
+                                <div class="contact-icon">🌐</div>
+                                <div>
+                                    <strong>Website</strong>
+                                    <p>satna.nic.in</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-row" style="border-bottom: 0;">
+                                <div class="contact-icon" style="color: #d32f2f; border-color: #d32f2f;">⚠</div>
+                                <div>
+                                    <strong style="color: #d32f2f;">Emergency Helpline</strong>
+                                    <p style="color: #d32f2f; font-weight: 700;">112</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="contact-form fade-in-up" onsubmit="handleContactForm(event)">
+                            <h3>Send an Inquiry</h3>
+                            <p class="subtitle">For pilgrimage planning, accommodation, or general queries</p>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" name="name" required placeholder="Your name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" name="phone" required placeholder="+91 9876543210">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" required placeholder="you@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Inquiry Type</label>
+                                <select name="type">
+                                    <option>Pilgrimage Planning</option>
+                                    <option>Accommodation</option>
+                                    <option>Boating &amp; Aarti</option>
+                                    <option>Group Visit</option>
+                                    <option>General Query</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea name="message" required placeholder="Tell us how we can help..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry &rarr;</button>
+                            <p id="formStatus" style="margin-top: 14px; font-style: italic; color: var(--color-primary); display: none;"></p>
+                        </form>
+                    </div>
+
+                    <div class="map-wrapper fade-in-up">
+                        <img src="images/map-chitrakoot.jpg" alt="Chitrakoot Map">
+                        <div class="map-overlay" onclick="window.open('https://maps.google.com/?q=Chitrakoot+Dham+Satna', '_blank')">
+                            <span>📍</span> View on Google Maps &rarr;
+                        </div>
+                    </div>
+
+                    <div class="text-center fade-in-up" style="margin-top: 80px;">
+                        <span class="eyebrow">Travel Wisdom</span>
+                        <h2 class="section-title">Visitor <span class="accent">Tips</span></h2>
+                    </div>
+
+                    <div class="visitor-tips">
+                        <div class="tip-card fade-in-up"><span class="ico">🌤</span><h5>Best Time</h5><p>October to March</p></div>
+                        <div class="tip-card fade-in-up"><span class="ico">👘</span><h5>Dress Code</h5><p>Modest attire for temples</p></div>
+                        <div class="tip-card fade-in-up"><span class="ico">🥘</span><h5>Food</h5><p>Strictly vegetarian only</p></div>
+                        <div class="tip-card fade-in-up"><span class="ico">🛍</span><h5>Shopping</h5><p>Wood carvings, lacquered turnery</p></div>
                     </div>
                 </div>
             </section>
@@ -1843,7 +3079,7 @@
         <div class="container footer-grid">
             <div class="footer-logo">
                 <h2>श्री चित्रकूट धाम</h2>
-                <p style="font-size: 14px; color: #aaa;">The Hill of Many Wonders — where Lord Rama spent his sacred exile. Satna District, Madhya Pradesh.</p>
+                <p>The Hill of Many Wonders — where Lord Rama spent his sacred exile. A pilgrimage that touches the soul, on the banks of the eternal Mandakini.</p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
@@ -1857,7 +3093,7 @@
             </div>
             <div class="footer-col">
                 <h4>Important Info</h4>
-                <ul class="footer-links" style="color: #ccc; font-size: 14px;">
+                <ul class="footer-links">
                     <li>Mandakini Aarti: Daily 6:00 PM</li>
                     <li>Kamadgiri Parikrama: Open All Day</li>
                     <li>Best Season: October – March</li>
@@ -1866,7 +3102,7 @@
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
-                <ul class="footer-links" style="color: #ccc; font-size: 14px;">
+                <ul class="footer-links">
                     <li>District Collector Office, Satna, MP</li>
                     <li>MPSTDC Chitrakoot Tourism</li>
                     <li>satna.nic.in</li>
@@ -1881,48 +3117,44 @@
 
     <!-- Gallery Lightbox Modal -->
     <div class="lightbox" id="lightbox">
-        <button class="lb-close" onclick="closeLightbox()">&times;</button>
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <button class="lb-prev" onclick="lbNav(-1)" aria-label="Previous">&larr;</button>
         <img src="" id="lightboxImg" alt="Enlarged View">
+        <button class="lb-next" onclick="lbNav(1)" aria-label="Next">&rarr;</button>
+        <div class="lb-counter" id="lbCounter">1 / 12</div>
     </div>
 
     <!-- Back to top -->
-    <a href="#" id="backToTop">&uarr;</a>
+    <a href="#" id="backToTop" aria-label="Back to top">&uarr;</a>
 
     <!-- ==========================================================================
          JAVASCRIPT
          ========================================================================== -->
     <script>
         // ---------------------------------------------------------
-        // SPA ROUTING (Handles navigation between simulated "pages")
+        // SPA ROUTING
         // ---------------------------------------------------------
         function handleRouting() {
             const hash = window.location.hash || '#home';
             const targetId = 'page-' + hash.substring(1);
-            
-            // Hide all pages
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show target page
-            const targetPage = document.getElementById(targetId);
-            if(targetPage) {
-                targetPage.classList.add('active');
-            } else {
-                document.getElementById('page-home').classList.add('active');
-            }
 
-            // Update Nav Active State
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+
+            const targetPage = document.getElementById(targetId);
+            if (targetPage) targetPage.classList.add('active');
+            else document.getElementById('page-home').classList.add('active');
+
             document.querySelectorAll('.nav-item').forEach(link => {
                 link.classList.remove('active');
-                if(link.getAttribute('href') === hash) link.classList.add('active');
+                if (link.getAttribute('href') === hash) link.classList.add('active');
             });
 
-            // Close mobile menu if open
             document.getElementById('mobileMenu').classList.remove('open');
 
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Re-trigger fade-in observer after a short delay so newly-shown elements animate
+            setTimeout(observeFadeIns, 80);
         }
 
         window.addEventListener('hashchange', handleRouting);
@@ -1931,90 +3163,97 @@
         // ---------------------------------------------------------
         // HERO SLIDER
         // ---------------------------------------------------------
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.hero .slide');
+        const dots = document.querySelectorAll('.slider-dots .dot');
         let currentSlide = 0;
         let slideInterval;
 
         function goToSlide(index) {
+            if (!slides.length) return;
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
             currentSlide = index;
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
         }
-
         function nextSlide() {
-            let next = (currentSlide + 1) % slides.length;
-            goToSlide(next);
+            goToSlide((currentSlide + 1) % slides.length);
         }
-
-        if(slides.length > 0) {
-            slideInterval = setInterval(nextSlide, 5000);
+        if (slides.length > 0) {
+            slideInterval = setInterval(nextSlide, 5500);
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
                     clearInterval(slideInterval);
                     goToSlide(index);
-                    slideInterval = setInterval(nextSlide, 5000);
+                    slideInterval = setInterval(nextSlide, 5500);
                 });
+            });
+            // Touch swipe support
+            let touchStartX = 0;
+            const heroEl = document.querySelector('.hero');
+            heroEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+            heroEl.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(dx) > 50) {
+                    clearInterval(slideInterval);
+                    goToSlide(dx < 0 ? (currentSlide + 1) % slides.length : (currentSlide - 1 + slides.length) % slides.length);
+                    slideInterval = setInterval(nextSlide, 5500);
+                }
             });
         }
 
         // ---------------------------------------------------------
-        // STICKY NAVBAR & BACK TO TOP
+        // SCROLL: progress bar, sticky nav, back-to-top
         // ---------------------------------------------------------
         const header = document.getElementById('navbar');
         const backToTop = document.getElementById('backToTop');
+        const progress = document.getElementById('scrollProgress');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+            progress.style.width = pct + '%';
 
-            if (window.scrollY > 500) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
+            if (scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+
+            if (scrollY > 500) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
+        }, { passive: true });
 
         // ---------------------------------------------------------
         // MOBILE MENU
         // ---------------------------------------------------------
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenu = document.getElementById('closeMenu');
-
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.add('open');
         });
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
+        document.getElementById('closeMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.remove('open');
         });
 
         // ---------------------------------------------------------
-        // INTERSECTION OBSERVER (Scroll Animations)
+        // INTERSECTION OBSERVER (fade-in-up)
         // ---------------------------------------------------------
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Run once
+                    fadeObserver.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
+        function observeFadeIns() {
+            document.querySelectorAll('.fade-in-up:not(.visible)').forEach(el => {
+                // Only observe if it's inside an active page or globally visible
+                const page = el.closest('.page-view');
+                if (!page || page.classList.contains('active')) {
+                    fadeObserver.observe(el);
+                }
+            });
+        }
+        observeFadeIns();
 
         // ---------------------------------------------------------
         // HORIZONTAL SCROLL (Nearby Places)
@@ -2022,40 +3261,73 @@
         const scroller = document.getElementById('placesScroller');
         const btnLeft = document.getElementById('scrollLeft');
         const btnRight = document.getElementById('scrollRight');
-
-        if(btnLeft && btnRight && scroller) {
-            btnLeft.addEventListener('click', () => {
-                scroller.scrollBy({ left: -300, behavior: 'smooth' });
-            });
-            btnRight.addEventListener('click', () => {
-                scroller.scrollBy({ left: 300, behavior: 'smooth' });
-            });
+        if (btnLeft && btnRight && scroller) {
+            btnLeft.addEventListener('click', () => scroller.scrollBy({ left: -320, behavior: 'smooth' }));
+            btnRight.addEventListener('click', () => scroller.scrollBy({ left: 320, behavior: 'smooth' }));
         }
 
         // ---------------------------------------------------------
-        // GALLERY LIGHTBOX
+        // GALLERY: filters + lightbox with prev/next nav
         // ---------------------------------------------------------
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const galleryImages = galleryItems.map(it => it.querySelector('img').src);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.filter;
+                galleryItems.forEach(it => {
+                    if (cat === 'all' || it.dataset.cat === cat) it.classList.remove('hide');
+                    else it.classList.add('hide');
+                });
+            });
+        });
+
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
+        const lbCounter = document.getElementById('lbCounter');
+        let lbIndex = 0;
 
-        window.openLightbox = function(src) {
-            lightboxImg.src = src;
+        window.openLightbox = function(index) {
+            lbIndex = index;
+            lightboxImg.src = galleryImages[lbIndex];
+            lbCounter.textContent = (lbIndex + 1) + ' / ' + galleryImages.length;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // prevent scrolling behind
-        }
-
+            document.body.style.overflow = 'hidden';
+        };
         window.closeLightbox = function() {
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
-        }
+        };
+        window.lbNav = function(dir) {
+            lbIndex = (lbIndex + dir + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[lbIndex];
+            lbCounter.textContent = (lbIndex + 1) + ' / ' + galleryImages.length;
+        };
 
-        // Close on clicking outside the image
         lightbox.addEventListener('click', (e) => {
-            if(e.target === lightbox) {
-                closeLightbox();
-            }
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') lbNav(-1);
+            else if (e.key === 'ArrowRight') lbNav(1);
         });
 
+        // ---------------------------------------------------------
+        // CONTACT FORM (frontend-only acknowledgment)
+        // ---------------------------------------------------------
+        window.handleContactForm = function(e) {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            status.style.display = 'block';
+            status.style.color = 'var(--color-primary)';
+            status.textContent = '🙏 Thank you! Your inquiry has been received. We will respond within 24 hours.';
+            e.target.reset();
+            setTimeout(() => { status.style.display = 'none'; }, 6000);
+        };
     </script>
 </body>
 </html>
