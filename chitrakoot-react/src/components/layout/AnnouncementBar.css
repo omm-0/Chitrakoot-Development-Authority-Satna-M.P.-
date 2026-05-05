@@ -1,0 +1,23 @@
+.announcement-bar {
+    background: var(--color-secondary);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    padding: 7px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    z-index: 200;
+}
+
+.announcement-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+    padding-left: 100%;
+}
+
+.announcement-track span {
+    margin: 0 24px;
+    font-family: var(--font-hindi), var(--font-ui);
+}

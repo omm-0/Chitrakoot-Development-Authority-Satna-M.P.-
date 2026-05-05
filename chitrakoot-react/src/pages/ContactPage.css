@@ -1,0 +1,111 @@
+.contact-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 760px;
+    margin: 0 auto 48px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    border-top: 3px solid var(--color-primary);
+}
+
+.contact-card h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+}
+
+.contact-card .address {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--color-text-muted);
+    margin-bottom: 22px;
+}
+
+.contact-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--color-accent);
+    margin: 22px auto;
+}
+
+.contact-info-list {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 2;
+}
+
+.contact-info-list .emergency {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.map-wrap {
+    position: relative;
+    height: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto 48px;
+    max-width: 1080px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.map-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.map-cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: var(--color-primary-dark);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 14px 28px;
+    border-radius: 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.map-cta:hover {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.visitor-tips {
+    max-width: 760px;
+    margin: 0 auto;
+    border: 1px solid var(--color-accent);
+    background: rgba(212, 160, 23, 0.06);
+    border-radius: 6px;
+    padding: 24px 28px;
+}
+
+.visitor-tips h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--color-primary-dark);
+    margin-bottom: 10px;
+}
+
+.visitor-tips p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+    .contact-card {
+        padding: 28px 20px;
+    }
+}

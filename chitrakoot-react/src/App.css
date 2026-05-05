@@ -1,0 +1,248 @@
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root {
+    /* Primary — Deep Saffron/Orange */
+    --color-primary: #E65100;
+    --color-primary-dark: #BF360C;
+    --color-primary-light: #FF8F00;
+
+    /* Secondary — Royal Indigo */
+    --color-secondary: #1A237E;
+    --color-secondary-light: #283593;
+
+    /* Accent — Temple Gold */
+    --color-accent: #D4A017;
+    --color-accent-light: #F0C040;
+
+    /* Backgrounds */
+    --color-bg-cream: #FFFAF3;
+    --color-bg-dark: #8B3500;
+    --color-bg-dark-deeper: #6E2A00;
+    --color-bg-section: #FFF3E0;
+    --color-bg-card: #FFFFFF;
+
+    /* Text */
+    --color-text-dark: #E65100;
+    --color-text-body: #c66b15;
+    --color-text-muted: #8B5E3C;
+    --color-text-light: #FFF0E0;
+
+    /* Utility */
+    --color-border: rgba(212, 160, 23, 0.2);
+    --color-card-shadow: rgba(228, 93, 20, 0.08);
+    --color-overlay: rgba(139, 53, 0, 0.6);
+
+    /* Fonts */
+    --font-hero: 'Cinzel Decorative', serif;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-hindi: 'Tiro Devanagari Hindi', serif;
+    --font-ui: 'Raleway', sans-serif;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s ease;
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text-body);
+    background: var(--color-bg-cream);
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-text-dark);
+    line-height: 1.25;
+}
+
+/* =========================================================
+   LAYOUT UTILITIES
+   ========================================================= */
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.section {
+    padding: 90px 0;
+}
+
+.section-dark {
+    background: linear-gradient(180deg, #8B3500 0%, #6E2A00 100%);
+    color: var(--color-text-light);
+}
+
+.section-cream {
+    background: var(--color-bg-cream);
+}
+
+.section-warm {
+    background: var(--color-bg-section);
+}
+
+/* =========================================================
+   SECTION HEADER (used globally — also wrapped by SectionHeader.jsx)
+   ========================================================= */
+.section-header {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--color-accent);
+    opacity: 0.5;
+}
+
+.section-divider span {
+    color: var(--color-accent);
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.eyebrow {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-primary);
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.section-dark .eyebrow {
+    color: var(--color-accent-light);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 14px;
+}
+
+.section-dark .section-title {
+    color: var(--color-accent-light);
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.section-dark .section-subtitle {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* =========================================================
+   ANIMATIONS — keyframes used across components
+   ========================================================= */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes kenburns {
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.05); }
+}
+
+@keyframes pulse-arrow {
+    0%, 100% { opacity: 0.5; transform: translateY(0); }
+    50%      { opacity: 1;   transform: translateY(4px); }
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes hero-rise {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   GLOBAL RESPONSIVE — container/section padding tweaks
+   ========================================================= */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+}

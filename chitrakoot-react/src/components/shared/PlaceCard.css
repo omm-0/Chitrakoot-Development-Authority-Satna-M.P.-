@@ -1,0 +1,58 @@
+.place-card {
+    flex: 0 0 280px;
+    height: 360px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+.place-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.place-card:hover .place-card-bg {
+    transform: scale(1.05);
+}
+
+.place-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(120,45,0,0.88) 0%, rgba(139,53,0,0.45) 50%, rgba(139,53,0,0.1) 100%);
+}
+
+.place-card-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 22px;
+    color: #fff;
+}
+
+.place-card-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--color-accent-light);
+    margin-bottom: 10px;
+}
+
+.place-card-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.place-card:hover .place-card-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
