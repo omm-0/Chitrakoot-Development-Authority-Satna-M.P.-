@@ -15,10 +15,12 @@ export default function Footer() {
             <h4>Quick Links</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/places">Sacred Places</Link></li>
-              <li><Link to="/facilities">Facilities</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
+              <li><Link to="/tourism">Tourism</Link></li>
+              <li><Link to="/tender-notice">Tender &amp; Notice</Link></li>
               <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </div>
 

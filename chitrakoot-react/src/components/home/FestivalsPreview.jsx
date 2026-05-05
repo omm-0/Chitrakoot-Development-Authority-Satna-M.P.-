@@ -24,7 +24,7 @@ export default function FestivalsPreview() {
           ))}
         </div>
         <div className="view-all-wrap">
-          <Button variant="outline" to="/festivals">View All Festivals</Button>
+          <Button variant="outline" to="/tourism">View All Festivals</Button>
         </div>
       </div>
     </section>

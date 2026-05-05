@@ -70,7 +70,7 @@ export default function HeroSlider() {
           Where Lord Rama spent his sacred exile on the banks of the Mandakini
         </p>
         <div className="hero-ctas">
-          <Button variant="primary" to="/places">Explore Sacred Places</Button>
+          <Button variant="primary" to="/tourism">Explore Sacred Places</Button>
           <Button variant="outline" to="/contact">Plan Your Visit</Button>
         </div>
       </div>

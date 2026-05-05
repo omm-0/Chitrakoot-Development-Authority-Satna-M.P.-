@@ -1,0 +1,96 @@
+.tourism-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.tourism-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border-bottom: 3px solid var(--color-accent);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.tourism-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(230, 81, 0, 0.12);
+}
+
+.tourism-card-img {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.tourism-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tourism-card:hover .tourism-card-img img {
+    transform: scale(1.04);
+}
+
+.tourism-category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: #fff;
+    backdrop-filter: blur(2px);
+}
+
+.cat-religious  { background: rgba(230, 81, 0, 0.92); }
+.cat-historic   { background: rgba(26, 35, 126, 0.92); }
+.cat-natural    { background: rgba(46, 125, 50, 0.92); }
+
+.tourism-card-body {
+    padding: 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tourism-card-title {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    color: var(--color-primary-dark);
+    margin-bottom: 10px;
+}
+
+.tourism-card-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.tourism-explore {
+    align-self: flex-start;
+}
+
+@media (max-width: 1024px) {
+    .tourism-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .tourism-grid {
+        grid-template-columns: 1fr;
+    }
+}

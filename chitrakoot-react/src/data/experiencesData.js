@@ -6,7 +6,7 @@ export const experiences = [
     tagline: 'The Hill That Fulfills All Desires',
     description: 'Perform the sacred 5 km circumambulation of Kamadgiri hill, passing through ancient temples. Lord Rama, Sita and Lakshman resided here.',
     pills: ['📍 Central', '⏱ 2-3 Hours', '🎫 Free Entry'],
-    link: '/places'
+    link: '/tourism'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const experiences = [
     tagline: 'The Divine Evening Aarti',
     description: 'Experience the mesmerizing evening aarti at Ramghat with brass lamps, Vedic chanting, and hundreds of diyas floating on the Mandakini.',
     pills: ['🪔 Daily 6:00 PM', '🚣 Boating ₹150'],
-    link: '/places'
+    link: '/tourism'
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const experiences = [
     tagline: 'The Sacred Spring',
     description: 'Hilltop temple with natural spring where Lord Rama created a cool waterfall for Hanuman after he returned from burning Lanka.',
     pills: ['📍 4 km from town', '🪜 355 Steps'],
-    link: '/places'
+    link: '/tourism'
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const experiences = [
     tagline: 'The Mystical Caves',
     description: 'Two ancient caves inside a mountain — one with throne-like rock formations where Lord Rama and Lakshman held court.',
     pills: ['📍 18 km', '🏔 Two Caves'],
-    link: '/places'
+    link: '/tourism'
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const experiences = [
     tagline: 'Where Sita Received Teachings',
     description: 'Sacred ashram of Sage Atri and Sati Anusuya, 18 km deep in forests. The Mandakini originates near this beautiful ashram.',
     pills: ['📍 18 km', '🛕 Ramayana Art'],
-    link: '/places'
+    link: '/tourism'
   },
   {
     id: 6,
@@ -51,6 +51,6 @@ export const experiences = [
     tagline: 'The Crystal Rock',
     description: "Two massive polished rocks on Mandakini's bank bearing footprints of Lord Rama and Sita. Site of the Jayant (crow) episode.",
     pills: ['📍 Near Janki Kund', '💎 Footprints'],
-    link: '/places'
+    link: '/tourism'
   }
 ];

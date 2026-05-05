@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B3500"/>
+      <stop offset="100%" stop-color="#6E2A00"/>
+    </linearGradient>
+  </defs>
+  <rect width="80" height="80" rx="40" fill="url(#bg)"/>
+
+  <!-- Kalash (top finial) -->
+  <line x1="40" y1="12" x2="40" y2="20" stroke="#F0C040" stroke-width="1.5"/>
+  <circle cx="40" cy="11" r="2.5" fill="#F0C040"/>
+
+  <!-- Shikhara (spire) -->
+  <path d="M40 18 L26 50 L54 50 Z" fill="#D4A017"/>
+
+  <!-- Temple body -->
+  <rect x="22" y="50" width="36" height="18" fill="#D4A017"/>
+
+  <!-- Doorway -->
+  <path d="M35 68 V58 a5 5 0 0 1 10 0 V68 Z" fill="#6E2A00"/>
+
+  <!-- Steps / base -->
+  <rect x="18" y="68" width="44" height="3" fill="#F0C040"/>
+  <rect x="14" y="71" width="52" height="3" fill="#D4A017"/>
+</svg>

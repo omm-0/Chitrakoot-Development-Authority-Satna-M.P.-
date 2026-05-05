@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import useScrollPosition from '../../hooks/useScrollPosition';
+// Kamtanath Ji logo. Replace this file with an actual photograph at the same
+// path (e.g. `kamtanath-logo.jpg`) and update the import accordingly.
+import kamtanathLogo from '../../assets/kamtanath-logo.svg';
 import './Header.css';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/places', label: 'Sacred Places' },
-  { to: '/facilities', label: 'Facilities' },
-  { to: '/festivals', label: 'Festivals' },
+  { to: '/about', label: 'About Us' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/tourism', label: 'Tourism' },
+  { to: '/tender-notice', label: 'Tender & Notice' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/contact', label: 'Contact' }
+  { to: '/contact', label: 'Contact Us' }
 ];
 
 const LOGO_FALLBACK_SVG =
-  "data:image/svg+xml;utf8," +
+  'data:image/svg+xml;utf8,' +
   encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" fill="#8B3500"/><text x="50%" y="55%" text-anchor="middle" fill="#D4A017" font-family="Tiro Devanagari Hindi, serif" font-size="26" dominant-baseline="middle">ॐ</text></svg>`
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><rect width="50" height="50" fill="#8B3500"/><path d="M25 12 L17 30 L33 30 Z" fill="#D4A017"/><rect x="15" y="30" width="20" height="10" fill="#D4A017"/><circle cx="25" cy="9" r="1.6" fill="#F0C040"/></svg>`
   );
 
 export default function Header() {
@@ -47,8 +50,8 @@ export default function Header() {
         <div className="container nav-wrap">
           <NavLink to="/" className="brand" end>
             <img
-              src="/images/logo.png"
-              alt="Chitrakoot Development Authority"
+              src={kamtanathLogo}
+              alt="Kamtanath Ji — Chitrakoot Development Authority"
               className="brand-logo"
               onError={handleLogoError}
             />

@@ -5,7 +5,7 @@ export default function FacilityCard({
   image,
   title,
   description,
-  link = '/facilities'
+  link = '/tourism'
 }) {
   return (
     <div className="facility-card fade-in-up">
