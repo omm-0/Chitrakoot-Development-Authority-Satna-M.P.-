@@ -23,7 +23,7 @@ export default function AboutIntro() {
               fourteen-year exile in these divine forests. The Hindu trinity — Brahma, Vishnu,
               and Mahesh — are said to have taken incarnation here.
             </p>
-            <Link to="/about" className="know-more">Know More →</Link>
+            <Link to="/about/chitrakoot" className="know-more">Know More →</Link>
           </div>
           <div className="about-image-wrap fade-in-up">
             <img src="/images/about-temple-history.jpg" alt="Ancient Temples of Chitrakoot" />

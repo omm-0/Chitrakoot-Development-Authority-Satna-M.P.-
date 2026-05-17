@@ -1,0 +1,73 @@
+.iudp-intro {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.iudp-intro .eyebrow {
+    display: block;
+    text-align: center;
+}
+
+.iudp-intro h2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    color: var(--color-text-dark);
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.iudp-intro p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--color-text-body);
+    line-height: 1.85;
+    margin-bottom: 18px;
+}
+
+.iudp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.iudp-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.iudp-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 26, 4, 0.10);
+}
+
+.iudp-num {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.iudp-card p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text-body);
+    line-height: 1.65;
+}
+
+@media (max-width: 1024px) {
+    .iudp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .iudp-grid {
+        grid-template-columns: 1fr;
+    }
+}

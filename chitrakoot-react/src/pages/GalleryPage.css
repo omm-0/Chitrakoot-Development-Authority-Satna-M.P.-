@@ -1,21 +1,23 @@
 .gallery-grid {
     column-count: 3;
-    column-gap: 16px;
+    column-gap: 18px;
 }
 
 .gallery-item {
     position: relative;
-    margin-bottom: 16px;
-    border-radius: 8px;
+    margin-bottom: 18px;
+    border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
     break-inside: avoid;
+    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.06);
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
     transition: transform 0.5s ease;
+    display: block;
 }
 
 .gallery-item:hover img {
@@ -25,7 +27,7 @@
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(230, 81, 0, 0.75);
+    background: rgba(59, 26, 4, 0.62);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,14 +40,15 @@
 }
 
 .gallery-overlay span {
-    font-family: var(--font-heading);
-    font-size: 14px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2.4px;
     color: #fff;
-    padding: 10px 22px;
-    border: 1px solid #fff;
-    border-radius: 3px;
+    padding: 9px 22px;
+    border: 1.5px solid #fff;
+    border-radius: 2px;
 }
 
 @media (max-width: 768px) {

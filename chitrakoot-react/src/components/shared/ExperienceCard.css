@@ -1,29 +1,30 @@
 .exp-card {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    border-left: 3px solid var(--color-primary);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    transition: var(--transition-smooth);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
 }
 
 .exp-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(230, 81, 0, 0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(59, 26, 4, 0.10);
 }
 
 .exp-card-img {
-    height: 200px;
+    height: 210px;
     overflow: hidden;
+    background: var(--color-bg-warm);
 }
 
 .exp-card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
 }
 
 .exp-card:hover .exp-card-img img {
@@ -31,7 +32,7 @@
 }
 
 .exp-card-body {
-    padding: 24px;
+    padding: 26px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -39,8 +40,9 @@
 
 .exp-card-title {
     font-family: var(--font-heading);
-    font-size: 18px;
-    color: var(--color-primary-dark);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-dark);
     margin-bottom: 4px;
 }
 
@@ -56,7 +58,7 @@
     font-family: var(--font-body);
     font-size: 15px;
     color: var(--color-text-body);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 16px;
     flex: 1;
 }
@@ -65,31 +67,33 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .pill {
-    background: var(--color-primary);
-    color: #fff;
+    background: var(--color-bg-warm);
+    color: var(--color-primary-dark);
+    border: 1px solid var(--color-border-strong);
     font-family: var(--font-ui);
     font-size: 10px;
     font-weight: 600;
+    letter-spacing: 0.5px;
     padding: 3px 10px;
-    border-radius: 16px;
+    border-radius: 12px;
 }
 
 .exp-card-link {
     font-family: var(--font-ui);
     font-size: 12px;
     font-weight: 600;
-    color: var(--color-primary-light);
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .exp-card-link:hover {
-    transform: translateX(4px);
-    color: var(--color-primary);
+    transform: translateX(3px);
+    color: var(--color-primary-dark);
 }

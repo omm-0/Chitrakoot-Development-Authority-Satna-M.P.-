@@ -1,18 +1,18 @@
 .site-footer {
-    background: linear-gradient(180deg, #6E2A00 0%, #5A2200 100%);
-    color: #f0d9c0;
+    background: var(--color-bg-dark);
+    color: var(--color-text-light);
     padding: 70px 0 24px;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 44px;
 }
 
 .footer-col h4 {
     font-family: var(--font-ui);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -21,19 +21,38 @@
 }
 
 .footer-brand-name {
-    font-family: var(--font-hero);
-    font-size: 20px;
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 700;
     color: var(--color-accent);
-    margin-bottom: 14px;
     display: block;
+}
+
+.footer-brand-hindi {
+    font-family: var(--font-hindi);
+    font-size: 15px;
+    color: var(--color-accent-light);
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 14px;
 }
 
 .footer-col p,
 .footer-col li {
     font-family: var(--font-body);
     font-size: 14px;
-    color: #f0d9c0;
-    line-height: 1.9;
+    color: rgba(255, 240, 224, 0.78);
+    line-height: 1.85;
+}
+
+.footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer-col a {
+    transition: color 0.2s ease;
 }
 
 .footer-col a:hover {
@@ -41,17 +60,18 @@
 }
 
 .footer-col .emergency {
-    color: var(--color-primary-light);
+    color: var(--color-accent-light);
+    font-weight: 600;
 }
 
 .footer-bottom {
     margin-top: 48px;
     padding-top: 22px;
-    border-top: 1px solid rgba(212, 160, 23, 0.25);
+    border-top: 1px solid rgba(212, 160, 23, 0.22);
     text-align: center;
     font-family: var(--font-ui);
     font-size: 13px;
-    color: rgba(255, 240, 224, 0.65);
+    color: rgba(255, 240, 224, 0.55);
 }
 
 @media (max-width: 1024px) {

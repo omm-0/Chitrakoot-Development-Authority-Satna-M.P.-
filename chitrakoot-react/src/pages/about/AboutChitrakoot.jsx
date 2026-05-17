@@ -1,27 +1,28 @@
-import PageHero from '../components/shared/PageHero';
-import SectionHeader from '../components/shared/SectionHeader';
-import useFadeInUp from '../hooks/useFadeInUp';
-import { significance } from '../data/significanceData';
-import './AboutPage.css';
+import PageHero from '../../components/shared/PageHero';
+import SectionHeader from '../../components/shared/SectionHeader';
+import useFadeInUp from '../../hooks/useFadeInUp';
+import { significance } from '../../data/significanceData';
+import './AboutChitrakoot.css';
 
-export default function AboutPage() {
+export default function AboutChitrakoot() {
   const ref = useFadeInUp();
 
   return (
     <div ref={ref}>
       <PageHero
         backgroundImage="/images/about-temple-history.jpg"
-        title="About Chitrakoot Dham"
+        title="About Chitrakoot"
         subtitle="The Sacred Land Where Ramayana Comes Alive"
       />
 
       <section className="section section-cream">
         <div className="container">
-          <div className="about-page-grid">
-            <div className="about-image-wrap fade-in-up">
+          <div className="about-ck-grid">
+            <div className="about-ck-image fade-in-up">
               <img src="/images/about-ramayana-scene.jpg" alt="Ramayana Scene" />
             </div>
             <div className="fade-in-up">
+              <span className="eyebrow">Heritage</span>
               <h2>History &amp; Mythology</h2>
               <p>
                 Chitrakoot falls in the northern Vindhya Range, spread across Uttar Pradesh and

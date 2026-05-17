@@ -7,9 +7,8 @@
 .festival-card {
     position: relative;
     height: 280px;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    border-bottom: 3px solid var(--color-accent);
     cursor: pointer;
 }
 
@@ -28,12 +27,12 @@
 .festival-card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(139, 53, 0, 0.70);
-    transition: background 0.4s ease;
+    background: rgba(59, 26, 4, 0.68);
+    transition: background 0.35s ease;
 }
 
 .festival-card:hover .festival-card-overlay {
-    background: rgba(110, 42, 0, 0.82);
+    background: rgba(59, 26, 4, 0.78);
 }
 
 .festival-card-content {
@@ -54,13 +53,14 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--color-accent);
+    color: var(--color-accent-light);
     margin-bottom: 10px;
 }
 
 .festival-name {
     font-family: var(--font-heading);
     font-size: 22px;
+    font-weight: 700;
     color: #fff;
     margin-bottom: 12px;
 }
@@ -69,10 +69,10 @@
     font-family: var(--font-body);
     font-size: 14px;
     font-style: italic;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 240, 224, 0.88);
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.35s ease, transform 0.35s ease;
     max-width: 90%;
 }
 
@@ -83,7 +83,7 @@
 
 .view-all-wrap {
     text-align: center;
-    margin-top: 36px;
+    margin-top: 40px;
 }
 
 @media (max-width: 1024px) {

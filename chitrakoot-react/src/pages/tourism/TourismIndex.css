@@ -1,0 +1,78 @@
+.ti-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+
+.ti-card {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.04);
+}
+
+.ti-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(59, 26, 4, 0.12);
+}
+
+.ti-card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-bg-warm);
+    transition: transform 0.5s ease;
+}
+
+.ti-card-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ti-card-body h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+.ti-tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.ti-link {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-primary);
+    transition: transform 0.25s ease;
+}
+
+.ti-card:hover .ti-link {
+    transform: translateX(3px);
+}
+
+@media (max-width: 1024px) {
+    .ti-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .ti-grid {
+        grid-template-columns: 1fr;
+    }
+}

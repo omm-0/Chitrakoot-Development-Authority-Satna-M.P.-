@@ -1,48 +1,50 @@
 /* =========================================================
-   DESIGN TOKENS
+   DESIGN TOKENS — Chitrakoot Development Authority
+   Warm Brown / Cream palette (Mahakaleshwar-inspired)
    ========================================================= */
 :root {
-    /* Primary — Deep Saffron/Orange */
-    --color-primary: #e7580b;
-    --color-primary-dark: #bf5a0c;
-    --color-primary-light: #FF8F00;
+    /* Primary — Warm Brown */
+    --color-primary: #8B4513;
+    --color-primary-dark: #5D2906;
+    --color-primary-light: #C67A3C;
 
-    /* Secondary — Royal Indigo */
-    --color-secondary: #1A237E;
-    --color-secondary-light: #283593;
+    /* Secondary — Deep Maroon-Brown */
+    --color-secondary: #5D2906;
+    --color-secondary-light: #7A3A0E;
 
     /* Accent — Temple Gold */
     --color-accent: #D4A017;
-    --color-accent-light: #F0C040;
+    --color-accent-light: #E8C55A;
 
     /* Backgrounds */
     --color-bg-cream: #FFFAF3;
-    --color-bg-dark: #8B3500;
-    --color-bg-dark-deeper: #6E2A00;
-    --color-bg-section: #FFF3E0;
+    --color-bg-warm: #FFF5EB;
+    --color-bg-section: #FFF0E0;
+    --color-bg-dark: #3B1A04;
+    --color-bg-dark-deeper: #2A1003;
     --color-bg-card: #FFFFFF;
 
     /* Text */
-    --color-text-dark: #E65100;
-    --color-text-body: #c66b15;
-    --color-text-muted: #8B5E3C;
+    --color-text-dark: #3B1A04;
+    --color-text-body: #5C3A1E;
+    --color-text-muted: #8B6F56;
     --color-text-light: #FFF0E0;
 
     /* Utility */
-    --color-border: rgba(212, 160, 23, 0.2);
-    --color-card-shadow: rgba(228, 93, 20, 0.08);
-    --color-overlay: rgba(139, 53, 0, 0.6);
+    --color-border: rgba(139, 69, 19, 0.15);
+    --color-border-strong: rgba(139, 69, 19, 0.28);
+    --color-card-shadow: rgba(93, 41, 6, 0.08);
+    --color-overlay: rgba(59, 26, 4, 0.55);
 
     /* Fonts */
-    --font-hero: 'Cinzel Decorative', serif;
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Cormorant Garamond', serif;
-    --font-hindi: 'Tiro Devanagari Hindi', serif;
-    --font-ui: 'Raleway', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Source Serif 4', serif;
+    --font-ui: 'Inter', sans-serif;
+    --font-hindi: 'Noto Sans Devanagari', sans-serif;
 
     /* Transitions */
-    --transition-smooth: all 0.3s ease;
-    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.25s ease;
+    --transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* =========================================================
@@ -97,9 +99,14 @@ ul {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-text-dark);
     line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+:lang(hi), .hindi {
+    font-family: var(--font-hindi);
 }
 
 /* =========================================================
@@ -113,11 +120,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-    padding: 90px 0;
+    padding: 100px 0;
 }
 
 .section-dark {
-    background: linear-gradient(180deg, #8B3500 0%, #6E2A00 100%);
+    background: var(--color-bg-dark);
     color: var(--color-text-light);
 }
 
@@ -126,11 +133,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-warm {
+    background: var(--color-bg-warm);
+}
+
+.section-alt {
     background: var(--color-bg-section);
 }
 
 /* =========================================================
-   SECTION HEADER (used globally — also wrapped by SectionHeader.jsx)
+   SECTION HEADER
    ========================================================= */
 .section-header {
     text-align: center;
@@ -141,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 16px;
 }
 
@@ -149,16 +160,15 @@ h1, h2, h3, h4, h5, h6 {
 .section-divider::after {
     content: '';
     display: block;
-    width: 40px;
+    width: 36px;
     height: 1px;
     background: var(--color-accent);
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .section-divider span {
     color: var(--color-accent);
-    font-size: 14px;
-    opacity: 0.85;
+    font-size: 10px;
 }
 
 .eyebrow {
@@ -166,9 +176,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3.5px;
     color: var(--color-primary);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     display: inline-block;
 }
 
@@ -178,8 +188,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 34px;
-    font-weight: 600;
+    font-size: 36px;
+    font-weight: 700;
     color: var(--color-text-dark);
     margin-bottom: 14px;
 }
@@ -198,11 +208,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-dark .section-subtitle {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 240, 224, 0.7);
 }
 
 /* =========================================================
-   ANIMATIONS — keyframes used across components
+   ANIMATIONS
    ========================================================= */
 .fade-in-up {
     opacity: 0;
@@ -215,16 +225,6 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
 }
 
-@keyframes kenburns {
-    from { transform: scale(1.02); }
-    to   { transform: scale(1.05); }
-}
-
-@keyframes pulse-arrow {
-    0%, 100% { opacity: 0.5; transform: translateY(0); }
-    50%      { opacity: 1;   transform: translateY(4px); }
-}
-
 @keyframes marquee {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -234,8 +234,13 @@ h1, h2, h3, h4, h5, h6 {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* =========================================================
-   GLOBAL RESPONSIVE — container/section padding tweaks
+   RESPONSIVE
    ========================================================= */
 @media (max-width: 768px) {
     .container {
@@ -244,5 +249,9 @@ h1, h2, h3, h4, h5, h6 {
 
     .section {
         padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 28px;
     }
 }

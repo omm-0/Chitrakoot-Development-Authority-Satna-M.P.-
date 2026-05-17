@@ -17,7 +17,7 @@ const SLIDES = [
   }
 ];
 
-const SLIDE_INTERVAL = 5000;
+const SLIDE_INTERVAL = 5500;
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -64,7 +64,8 @@ export default function HeroSlider() {
 
       <div className="hero-content">
         <div className="hero-eyebrow">॥ जय श्री राम ॥</div>
-        <h1 className="hero-title">चित्रकूट विकास प्राधिकरण</h1>
+        <h1 className="hero-title">Chitrakoot Development Authority</h1>
+        <div className="hero-title-hindi">चित्रकूट विकास प्राधिकरण</div>
         <div className="hero-subtitle">The Hill of Many Wonders</div>
         <p className="hero-desc">
           Where Lord Rama spent his sacred exile on the banks of the Mandakini
@@ -85,8 +86,6 @@ export default function HeroSlider() {
           />
         ))}
       </div>
-
-      <div className="scroll-down">▼</div>
     </section>
   );
 }

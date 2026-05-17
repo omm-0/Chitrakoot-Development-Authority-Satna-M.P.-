@@ -7,20 +7,20 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-col">
-            <span className="footer-brand-name">चित्रकूट विकास प्राधिकरण</span>
-            <p>Chitrakoot Development Authority — The Hill of Many Wonders. Satna District, Madhya Pradesh.</p>
+            <span className="footer-brand-name">Chitrakoot Development Authority</span>
+            <span className="footer-brand-hindi">चित्रकूट विकास प्राधिकरण</span>
+            <p>The Hill of Many Wonders. Satna District, Madhya Pradesh.</p>
           </div>
 
           <div className="footer-col">
             <h4>Quick Links</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/projects">Projects</Link></li>
-              <li><Link to="/tourism">Tourism</Link></li>
-              <li><Link to="/tender-notice">Tender &amp; Notice</Link></li>
+              <li><Link to="/about/cda">About CDA</Link></li>
+              <li><Link to="/tourism/ram-ghat">Tourism</Link></li>
+              <li><Link to="/projects/ongoing">Projects</Link></li>
               <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/contact">Contact Us</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -28,7 +28,7 @@ export default function Footer() {
             <h4>Important Info</h4>
             <ul>
               <li>Mandakini Aarti: Daily 6:00 PM</li>
-              <li>Kamadgiri Parikrama: Open All Day</li>
+              <li>Parikrama: Open All Day</li>
               <li>Best Season: October – March</li>
               <li>Pin Code: 485331</li>
             </ul>
@@ -37,8 +37,8 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li>District Collector Office, Satna, MP</li>
-              <li>MPSTDC Chitrakoot Tourism</li>
+              <li>CDA Office, Satna, MP</li>
+              <li>MPSTDC Tourism</li>
               <li>satna.nic.in</li>
               <li>Emergency: <span className="emergency">112</span></li>
             </ul>
@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          © 2026 Chitrakoot Development Authority, Satna, Madhya Pradesh | Developed with devotion 🙏
+          © 2026 Chitrakoot Development Authority, Satna, Madhya Pradesh | Government of Madhya Pradesh
         </div>
       </div>
     </footer>
