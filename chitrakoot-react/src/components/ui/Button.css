@@ -4,44 +4,223 @@
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.8px;
-    padding: 13px 26px;
-    border-radius: 2px;
+    letter-spacing: 1.5px;
+    padding: 12px 28px;
+    border-radius: 3px;
     cursor: pointer;
-    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
-    border: 1.5px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    position: relative;
 }
 
+/* ===== PRIMARY BUTTON — Gold, Filled ===== */
 .btn-primary {
-    background: var(--color-accent);
-    color: var(--color-text-dark);
-    border-color: var(--color-accent);
+    background: #D4A017;
+    color: #3B1A04;
+    border: none;
 }
 
 .btn-primary:hover {
-    background: var(--color-accent-light);
-    border-color: var(--color-accent-light);
+    background: #E8C55A;
+    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
     transform: translateY(-1px);
 }
 
+.btn-primary:active {
+    background: #C4970C;
+    transform: translateY(0);
+}
+
+/* ===== SECONDARY BUTTON — Outline, Brown ===== */
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #8B4513;
+    color: #8B4513;
+    padding: 11px 27px;
+}
+
+.btn-secondary:hover {
+    background: rgba(139, 69, 19, 0.08);
+    border-color: #D4A017;
+    color: #D4A017;
+}
+
+.btn-secondary:active {
+    background: rgba(139, 69, 19, 0.15);
+}
+
+/* ===== OUTLINE BUTTON — Light text on dark ===== */
 .btn-outline {
     background: transparent;
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #FFFFFF;
+    padding: 11px 27px;
 }
 
 .btn-outline:hover {
     background: rgba(255, 255, 255, 0.12);
-    border-color: #fff;
+    border-color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+.btn-outline:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== OUTLINE DARK BUTTON ===== */
 .btn-outline-dark {
     background: transparent;
-    color: var(--color-primary-dark);
-    border-color: var(--color-primary);
+    color: #5D2906;
+    border: 2px solid #8B4513;
+    padding: 11px 27px;
 }
 
 .btn-outline-dark:hover {
-    background: var(--color-primary);
-    color: #fff;
+    background: #8B4513;
+    color: #FFFFFF;
+    border-color: #8B4513;
+}
+
+.btn-outline-dark:active {
+    background: #5D2906;
+    border-color: #5D2906;
+}
+
+/* ===== PILL BUTTON — Special Features ===== */
+.btn-pill {
+    border-radius: 25px;
+    border: 2px solid #8B4513;
+    background: rgba(139, 69, 19, 0.05);
+    color: #5D2906;
+    padding: 9px 20px;
+}
+
+.btn-pill:hover {
+    background: rgba(139, 69, 19, 0.12);
+    border-color: #D4A017;
+    color: #D4A017;
+}
+
+/* ===== LINK BUTTON (Know More style) ===== */
+.btn-link {
+    background: transparent;
+    color: #D4A017;
+    border: none;
+    text-decoration: underline;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.btn-link:hover {
+    color: #E8C55A;
+    opacity: 0.8;
+}
+
+/* ===== DISABLED STATE ===== */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===== ICON BUTTONS ===== */
+.btn-icon {
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== BUTTON SIZES ===== */
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.btn-lg {
+    padding: 14px 36px;
+    font-size: 13px;
+    letter-spacing: 1.6px;
+}
+
+/* ===== BUTTON GROUPS ===== */
+.btn-group {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== LOADING STATE ===== */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn.loading::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .btn {
+        font-size: 11px;
+        padding: 10px 24px;
+        letter-spacing: 1px;
+    }
+
+    .btn-lg {
+        padding: 12px 32px;
+        font-size: 12px;
+    }
+
+    .btn-sm {
+        padding: 7px 14px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        font-size: 11px;
+        padding: 10px 20px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn-group > .btn {
+        width: 100%;
+    }
 }

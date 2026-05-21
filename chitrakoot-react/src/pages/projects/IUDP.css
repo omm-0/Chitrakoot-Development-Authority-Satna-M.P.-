@@ -31,9 +31,9 @@
 }
 
 .iudp-card {
-    background: #fff;
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 28px;
     display: flex;
     flex-direction: column;

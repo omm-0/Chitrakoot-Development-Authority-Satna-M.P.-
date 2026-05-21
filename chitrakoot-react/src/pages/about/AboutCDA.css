@@ -26,12 +26,12 @@
 }
 
 .cda-highlight {
-    background: #fff;
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-top: 3px solid var(--color-primary);
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 26px;
-    box-shadow: 0 2px 12px rgba(59, 26, 4, 0.06);
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.06);
 }
 
 .cda-highlight h4 {

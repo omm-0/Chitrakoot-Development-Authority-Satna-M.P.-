@@ -27,9 +27,9 @@
 }
 
 .vm-card {
-    background: #fff;
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 30px 28px;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
@@ -37,7 +37,7 @@
 
 .vm-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(59, 26, 4, 0.10);
+    box-shadow: 0 8px 22px rgba(93, 41, 6, 0.10);
 }
 
 .vm-card-num {

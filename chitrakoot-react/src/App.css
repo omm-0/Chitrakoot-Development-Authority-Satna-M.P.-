@@ -1,50 +1,76 @@
 /* =========================================================
    DESIGN TOKENS — Chitrakoot Development Authority
-   Warm Brown / Cream palette (Mahakaleshwar-inspired)
+   Mahakaleshwar-Inspired Brown / Gold / Cream System
    ========================================================= */
-:root {
-    /* Primary — Warm Brown */
-    --color-primary: #8B4513;
-    --color-primary-dark: #5D2906;
-    --color-primary-light: #C67A3C;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
 
-    /* Secondary — Deep Maroon-Brown */
+:root {
+    /* ===== PRIMARY BRAND COLORS ===== */
+    --color-primary-brown: #8B4513;           /* Saddle Brown — main brand */
+    --color-primary-dark: #5D2906;            /* Dark Brown/Maroon — announcement, footer */
+    --color-primary-dark-secondary: #6B3410;  /* Slightly lighter dark brown */
+    
+    /* ===== GOLD ACCENT COLORS ===== */
+    --color-gold-accent: #D4A017;             /* Temple Gold — highlights, dividers */
+    --color-gold-light: #FFD700;              /* Bright Gold — buttons, accents */
+    --color-gold-secondary: #CD853F;          /* Peru/Medium Brown — subtle accents */
+
+    /* ===== BACKGROUND COLORS ===== */
+    --color-bg-cream: #FFFBF5;                /* Warm off-white/cream */
+    --color-bg-cream-alt: #FFF8F0;            /* Alternative cream shade */
+    --color-bg-warm: #FFF5EB;                 /* Navbar/warm section background */
+    --color-bg-dark: #5D2906;                 /* Dark brown — footer, announcement */
+    --color-bg-dark-section: #8B4513;         /* For dark sections */
+    --color-overlay-dark: rgba(93, 41, 6, 0.65); /* Dark overlay on images */
+
+    /* ===== TEXT COLORS ===== */
+    --color-text-dark: #3B1A04;               /* Main text — very dark brown */
+    --color-text-brown: #5D2906;              /* Dark brown text */
+    --color-text-muted: #8B6F56;              /* Muted brown — secondary text */
+    --color-text-light: #FFF5EB;              /* Light text on dark backgrounds */
+    --color-text-white: #FFFFFF;              /* White text */
+
+    /* ===== BORDER & SHADOW COLORS ===== */
+    --color-border-gold: rgba(212, 160, 23, 0.15);   /* Gold border overlay */
+    --color-shadow-gold: rgba(212, 160, 23, 0.08);   /* Gold-tinted shadow */
+    --color-shadow-brown: rgba(93, 41, 6, 0.12);     /* Brown-tinted shadow */
+
+    /* ===== FONT FAMILIES ===== */
+    --font-display: 'Playfair Display', serif;        /* Hero titles, big headings */
+    --font-heading: 'Playfair Display', serif;        /* Section titles, h1-h4 */
+    --font-body: 'Source Serif 4', serif;             /* Body text, descriptions */
+    --font-ui: 'Inter', sans-serif;                   /* Navigation, buttons, labels */
+    --font-hindi: 'Noto Sans Devanagari', sans-serif; /* Hindi text */
+
+    /* ===== SPACING ===== */
+    --max-width: 1200px;
+    --section-padding-vertical: 100px;
+    --section-padding-horizontal: 24px;
+    --card-padding: 28px;
+    --gap-cards: 24px;
+    --gap-small: 16px;
+
+    /* ===== TRANSITIONS ===== */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ===== LEGACY ALIASES (for backward compatibility) ===== */
+    --color-primary: #8B4513;
+    --color-primary-light: #C67A3C;
     --color-secondary: #5D2906;
     --color-secondary-light: #7A3A0E;
-
-    /* Accent — Temple Gold */
     --color-accent: #D4A017;
     --color-accent-light: #E8C55A;
-
-    /* Backgrounds */
-    --color-bg-cream: #FFFAF3;
-    --color-bg-warm: #FFF5EB;
     --color-bg-section: #FFF0E0;
-    --color-bg-dark: #3B1A04;
     --color-bg-dark-deeper: #2A1003;
     --color-bg-card: #FFFFFF;
-
-    /* Text */
-    --color-text-dark: #3B1A04;
     --color-text-body: #5C3A1E;
-    --color-text-muted: #8B6F56;
-    --color-text-light: #FFF0E0;
-
-    /* Utility */
     --color-border: rgba(139, 69, 19, 0.15);
     --color-border-strong: rgba(139, 69, 19, 0.28);
     --color-card-shadow: rgba(93, 41, 6, 0.08);
     --color-overlay: rgba(59, 26, 4, 0.55);
-
-    /* Fonts */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Source Serif 4', serif;
-    --font-ui: 'Inter', sans-serif;
-    --font-hindi: 'Noto Sans Devanagari', sans-serif;
-
-    /* Transitions */
-    --transition-smooth: all 0.25s ease;
-    --transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* =========================================================
@@ -120,24 +146,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-    padding: 100px 0;
+    padding: 100px 24px;
 }
 
 .section-dark {
-    background: var(--color-bg-dark);
-    color: var(--color-text-light);
+    background: #5D2906;
+    color: #FFF5EB;
 }
 
 .section-cream {
-    background: var(--color-bg-cream);
+    background: #FFFBF5;
 }
 
 .section-warm {
-    background: var(--color-bg-warm);
+    background: #FFF5EB;
 }
 
 .section-alt {
-    background: var(--color-bg-section);
+    background: #FFF8F0;
 }
 
 /* =========================================================
@@ -160,15 +186,17 @@ h1, h2, h3, h4, h5, h6 {
 .section-divider::after {
     content: '';
     display: block;
-    width: 36px;
+    width: 40px;
     height: 1px;
-    background: var(--color-accent);
+    background: #D4A017;
     opacity: 0.6;
 }
 
 .section-divider span {
-    color: var(--color-accent);
+    color: #D4A017;
     font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .eyebrow {
@@ -176,39 +204,42 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 3.5px;
-    color: var(--color-primary);
-    margin-bottom: 14px;
+    letter-spacing: 2px;
+    color: #8B4513;
+    margin-bottom: 16px;
     display: inline-block;
 }
 
 .section-dark .eyebrow {
-    color: var(--color-accent-light);
+    color: #D4A017;
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    margin-bottom: 14px;
+    font-size: 40px;
+    font-weight: 600;
+    color: #5D2906;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
 }
 
 .section-dark .section-title {
-    color: var(--color-accent-light);
+    color: #FFFFFF;
 }
 
 .section-subtitle {
     font-family: var(--font-body);
-    font-style: italic;
+    font-style: normal;
     font-size: 17px;
-    color: var(--color-text-muted);
-    max-width: 640px;
+    font-weight: 400;
+    color: #8B6F56;
+    max-width: 700px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
 .section-dark .section-subtitle {
-    color: rgba(255, 240, 224, 0.7);
+    color: rgba(255, 245, 235, 0.75);
 }
 
 /* =========================================================

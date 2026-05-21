@@ -1,38 +1,57 @@
 .exp-card {
-    background: #fff;
-    border-radius: 6px;
+    background: #FFFFFF;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.04);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-left: 4px solid #8B4513;
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+    animation: fadeInUp 0.6s ease-out backwards;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.exp-card:nth-child(1) { animation-delay: 0s; }
+.exp-card:nth-child(2) { animation-delay: 0.08s; }
+.exp-card:nth-child(3) { animation-delay: 0.16s; }
+.exp-card:nth-child(4) { animation-delay: 0.24s; }
+.exp-card:nth-child(5) { animation-delay: 0.32s; }
+.exp-card:nth-child(6) { animation-delay: 0.40s; }
+
 .exp-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(59, 26, 4, 0.10);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(93, 41, 6, 0.12);
 }
 
 .exp-card-img {
-    height: 210px;
+    height: 200px;
     overflow: hidden;
-    background: var(--color-bg-warm);
+    background: #FFFBF5;
 }
 
 .exp-card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .exp-card:hover .exp-card-img img {
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
 
 .exp-card-body {
-    padding: 26px;
+    padding: 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -40,60 +59,130 @@
 
 .exp-card-title {
     font-family: var(--font-heading);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    margin-bottom: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5D2906;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
 }
 
 .exp-card-tagline {
     font-family: var(--font-body);
     font-style: italic;
     font-size: 14px;
-    color: var(--color-primary);
+    font-weight: 400;
+    color: #8B4513;
     margin-bottom: 12px;
 }
 
 .exp-card-desc {
     font-family: var(--font-body);
     font-size: 15px;
-    color: var(--color-text-body);
-    line-height: 1.65;
+    font-weight: 400;
+    color: #5C3A1E;
+    line-height: 1.6;
     margin-bottom: 16px;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 18px;
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
 .pill {
-    background: var(--color-bg-warm);
-    color: var(--color-primary-dark);
-    border: 1px solid var(--color-border-strong);
+    background: #8B4513;
+    color: #FFFFFF;
+    border: none;
     font-family: var(--font-ui);
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 3px 10px;
-    border-radius: 12px;
+    letter-spacing: 0.8px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    display: inline-block;
 }
 
 .exp-card-link {
-    font-family: var(--font-ui);
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
-    color: var(--color-primary);
+    color: #D4A017;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     display: inline-block;
-    transition: transform 0.25s ease, color 0.25s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.exp-card-link::after {
+    content: ' →';
 }
 
 .exp-card-link:hover {
     transform: translateX(3px);
-    color: var(--color-primary-dark);
+    color: #E8C55A;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .exp-card {
+        border-left-width: 3px;
+    }
+
+    .exp-card-title {
+        font-size: 17px;
+    }
+
+    .exp-card-img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .exp-card-body {
+        padding: 20px;
+    }
+
+    .exp-card-title {
+        font-size: 16px;
+    }
+
+    .exp-card-desc {
+        font-size: 14px;
+    }
+
+    .pill {
+        font-size: 9px;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .exp-card-img {
+        height: 160px;
+    }
+
+    .exp-card-body {
+        padding: 16px;
+    }
+
+    .exp-card-title {
+        font-size: 15px;
+    }
+
+    .exp-card-desc {
+        font-size: 13px;
+    }
+
+    .pills {
+        gap: 6px;
+    }
 }

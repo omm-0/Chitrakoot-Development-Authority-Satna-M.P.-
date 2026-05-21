@@ -24,7 +24,7 @@
     background: var(--color-bg-warm);
     border-left: 3px solid var(--color-accent);
     padding: 22px 26px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .tp-significance h3 {
@@ -48,12 +48,12 @@
 }
 
 .tp-info-card {
-    background: #fff;
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-top: 3px solid var(--color-primary);
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 26px;
-    box-shadow: 0 2px 12px rgba(59, 26, 4, 0.06);
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.06);
 }
 
 .tp-info-card h4 {
@@ -118,8 +118,8 @@
 }
 
 .tp-other-card {
-    background: #fff;
-    border-radius: 6px;
+    background: var(--color-bg-card);
+    border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--color-border);
     display: flex;

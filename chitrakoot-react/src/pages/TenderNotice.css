@@ -1,18 +1,20 @@
 .tender-disclaimer {
-    background: rgba(212, 160, 23, 0.10);
-    border: 1px solid rgba(212, 160, 23, 0.5);
+    background: rgba(212, 160, 23, 0.08);
+    border: 1px solid rgba(212, 160, 23, 0.3);
     border-left: 4px solid var(--color-accent);
-    padding: 14px 20px;
-    border-radius: 4px;
+    padding: 16px 20px;
+    border-radius: 8px;
     font-family: var(--font-body);
     font-size: 14px;
+    font-weight: 400;
     color: var(--color-primary-dark);
-    line-height: 1.5;
+    line-height: 1.6;
     margin-bottom: 24px;
 }
 
 .tender-disclaimer strong {
-    color: var(--color-primary);
+    color: #8B4513;
+    font-weight: 600;
     margin-right: 6px;
 }
 
@@ -30,7 +32,7 @@
     gap: 10px;
     font-family: var(--font-ui);
     font-size: 13px;
-    color: var(--color-text-dark);
+    color: #5D2906;
 }
 
 .tender-filter label {
@@ -38,25 +40,143 @@
     text-transform: uppercase;
     letter-spacing: 1.2px;
     font-size: 11px;
+    color: #5D2906;
 }
 
 .tender-filter select,
 .tender-search input {
     font-family: var(--font-body);
     font-size: 14px;
-    padding: 9px 14px;
-    border: 1px solid var(--color-border-strong);
-    border-radius: 4px;
-    background: #fff;
-    color: var(--color-text-dark);
+    font-weight: 400;
+    padding: 10px 12px;
+    border: 1px solid #D4A017;
+    border-radius: 8px;
+    background: var(--color-bg-warm);
+    color: #5D2906;
     min-width: 160px;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tender-filter select:focus,
 .tender-search input:focus {
-    border-color: var(--color-primary);
+    border-color: #8B4513;
+    background: var(--color-bg-card);
+    box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.1);
+}
+
+.tender-filter select::placeholder,
+.tender-search input::placeholder {
+    color: #8B6F56;
+}
+
+.tender-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tender-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(212, 160, 23, 0.15);
+    border-left: 4px solid #8B4513;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tender-item:hover {
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.1);
+    border-left-color: #D4A017;
+}
+
+.tender-item-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: #5D2906;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+
+.tender-item-date {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #D4A017;
+    margin-bottom: 8px;
+}
+
+.tender-item-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: #5C3A1E;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.tender-item-link {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #D4A017;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.tender-item-link:hover {
+    color: #8B4513;
+}
+
+.tender-item-link::after {
+    content: ' ↓';
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tender-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .tender-filter select,
+    .tender-search input {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .tender-item {
+        padding: 16px;
+    }
+
+    .tender-item-title {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tender-disclaimer {
+        font-size: 13px;
+        padding: 12px 16px;
+    }
+
+    .tender-item {
+        padding: 14px;
+    }
+
+    .tender-item-title {
+        font-size: 14px;
+    }
+
+    .tender-item-desc {
+        font-size: 12px;
+    }
 }
 
 .tender-search input {
@@ -64,10 +184,10 @@
 }
 
 .tender-table-wrap {
-    background: #fff;
-    border-radius: 6px;
+    background: var(--color-bg-card);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(59, 26, 4, 0.06);
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.06);
     border: 1px solid var(--color-border);
     overflow-x: auto;
 }
@@ -174,11 +294,11 @@
 }
 
 .tender-card {
-    background: #fff;
-    border-radius: 6px;
+    background: var(--color-bg-card);
+    border-radius: 8px;
     border: 1px solid var(--color-border);
     border-top: 3px solid var(--color-primary);
-    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.04);
+    box-shadow: 0 1px 6px rgba(93, 41, 6, 0.04);
     padding: 18px 18px;
     display: flex;
     flex-direction: column;

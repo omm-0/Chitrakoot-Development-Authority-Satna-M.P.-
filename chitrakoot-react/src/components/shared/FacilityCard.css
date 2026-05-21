@@ -1,27 +1,27 @@
 .facility-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 26px;
+    gap: 24px;
 }
 
 .facility-card {
     display: flex;
-    background: #fff;
-    border-radius: 6px;
+    background: var(--color-bg-cream);
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.04);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-top: 3px solid var(--color-primary);
+    box-shadow: 0 1px 8px rgba(93, 41, 6, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .facility-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(59, 26, 4, 0.10);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(93, 41, 6, 0.1);
 }
 
 .facility-card-img {
     flex: 0 0 40%;
-    min-height: 170px;
+    min-height: 160px;
     overflow: hidden;
     background: var(--color-bg-warm);
 }
@@ -30,10 +30,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.facility-card:hover .facility-card-img img {
+    transform: scale(1.05);
 }
 
 .facility-card-body {
-    padding: 22px;
+    padding: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -41,32 +46,41 @@
 
 .facility-card-title {
     font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-text-dark);
+    font-size: 17px;
+    font-weight: 600;
+    color: #5D2906;
     margin-bottom: 8px;
+    letter-spacing: -0.2px;
 }
 
 .facility-card-desc {
     font-family: var(--font-body);
     font-size: 14px;
-    color: var(--color-text-body);
+    font-weight: 400;
+    color: #5C3A1E;
     line-height: 1.6;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     flex: 1;
 }
 
 .facility-card-link {
-    font-family: var(--font-ui);
+    font-family: var(--font-body);
     font-size: 11px;
     font-weight: 600;
-    color: var(--color-primary);
+    color: #D4A017;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.facility-card-link::after {
+    content: ' →';
 }
 
 .facility-card-link:hover {
-    color: var(--color-primary-dark);
+    color: #E8C55A;
 }
 
 .facility-grid.full .facility-card {
@@ -79,24 +93,71 @@
     min-height: 220px;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
     .facility-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .facility-card-title {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 768px) {
+    .facility-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
     .facility-card {
         flex-direction: column;
     }
+
     .facility-card-img {
         flex: 0 0 200px;
         width: 100%;
+    }
+
+    .facility-card-body {
+        padding: 18px;
+    }
+
+    .facility-card-title {
+        font-size: 15px;
+    }
+
+    .facility-card-desc {
+        font-size: 13px;
     }
 }
 
 @media (max-width: 480px) {
     .facility-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .facility-card-img {
+        flex: 0 0 160px;
+        min-height: 160px;
+    }
+
+    .facility-card-body {
+        padding: 14px;
+    }
+
+    .facility-card-title {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .facility-card-desc {
+        font-size: 12px;
+    }
+
+    .facility-card-link {
+        font-size: 10px;
     }
 }

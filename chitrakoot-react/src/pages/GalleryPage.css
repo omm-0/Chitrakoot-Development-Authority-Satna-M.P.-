@@ -1,38 +1,43 @@
 .gallery-grid {
     column-count: 3;
-    column-gap: 18px;
+    column-gap: 20px;
 }
 
 .gallery-item {
     position: relative;
-    margin-bottom: 18px;
-    border-radius: 6px;
+    margin-bottom: 20px;
+    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
     break-inside: avoid;
-    box-shadow: 0 1px 6px rgba(59, 26, 4, 0.06);
+    box-shadow: 0 2px 12px rgba(93, 41, 6, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover {
+    box-shadow: 0 6px 20px rgba(93, 41, 6, 0.15);
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: block;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(59, 26, 4, 0.62);
+    background: rgba(59, 26, 4, 0.65);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -44,20 +49,59 @@
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2.4px;
-    color: #fff;
-    padding: 9px 22px;
-    border: 1.5px solid #fff;
-    border-radius: 2px;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    border: 1px solid #D4A017;
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
+.gallery-item:hover .gallery-overlay span {
+    background: #D4A017;
+    color: #3B1A04;
+    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
     .gallery-grid {
         column-count: 2;
     }
 }
 
+@media (max-width: 768px) {
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 16px;
+    }
+
+    .gallery-item {
+        margin-bottom: 16px;
+    }
+
+    .gallery-overlay span {
+        font-size: 11px;
+        padding: 8px 16px;
+        letter-spacing: 1.2px;
+    }
+}
+
 @media (max-width: 480px) {
+    .gallery-grid {
+        column-count: 1;
+    }
+
+    .gallery-item {
+        margin-bottom: 12px;
+    }
+
+    .gallery-overlay span {
+        font-size: 10px;
+        padding: 6px 12px;
+        letter-spacing: 0.8px;
+    }
+}
     .gallery-grid {
         column-count: 1;
     }
