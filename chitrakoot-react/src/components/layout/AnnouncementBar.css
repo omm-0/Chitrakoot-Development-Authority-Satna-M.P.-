@@ -7,16 +7,18 @@
     padding: 10px 16px;
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
-    z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1100;
     letter-spacing: 0.5px;
     line-height: 1.4;
+    width: 100%;
 }
 
 .announcement-track {
     display: inline-flex;
     white-space: nowrap;
-    animation: marquee 40s linear infinite;
+    animation: marquee 6s linear infinite;
     padding-left: 100%;
     gap: 40px;
 }
