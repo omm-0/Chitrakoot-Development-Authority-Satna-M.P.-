@@ -162,9 +162,6 @@
         min-width: 100px;
     }
 }
-    color: var(--color-primary);
-    font-weight: 700;
-}
 
 /* Form */
 .contact-form {

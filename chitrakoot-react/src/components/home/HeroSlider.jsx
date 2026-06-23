@@ -5,15 +5,15 @@ import './HeroSlider.css';
 const SLIDES = [
   {
     image: '/images/C1.png',
-    caption: 'रामघाट की पवित्र नौकाएँ — Sacred Boats on the Mandakini at Ramghat'
+    caption: 'Ramghat and the sacred Mandakini riverfront'
   },
   {
     image: '/images/C2.png',
-    caption: 'मंदाकिनी प्रपात — Where the Sacred Waters Cascade'
+    caption: 'Spiritual landscapes shaped by faith and pilgrimage'
   },
   {
     image: '/images/C3.png',
-    caption: 'प्राचीन देवालय — The Ancient Temples of Chitrakoot Dham'
+    caption: 'Ancient shrines, ghats, and living devotional traditions'
   }
 ];
 
@@ -53,26 +53,22 @@ export default function HeroSlider() {
       </div>
       <div className="hero-overlay" />
 
-      {SLIDES.map((slide, i) => (
-        <div
-          key={i}
-          className={`slide-caption${i === currentSlide ? ' active' : ''}`}
-        >
-          {slide.caption}
-        </div>
-      ))}
-
       <div className="hero-content">
-        <div className="hero-eyebrow">॥ जय श्री राम ॥</div>
+        <div className="hero-eyebrow">Sacred City Portal</div>
         <h1 className="hero-title">Chitrakoot Development Authority</h1>
-        <div className="hero-title-hindi">चित्रकूट विकास प्राधिकरण</div>
+        <div className="hero-title-hindi">चित्रकूट विकास प्राधिकरण, सतना</div>
         <div className="hero-subtitle">The Hill of Many Wonders</div>
         <p className="hero-desc">
-          Where Lord Rama spent his sacred exile on the banks of the Mandakini
+          Riverfront development, pilgrim services, and sacred destination access presented in
+          the same visual language as the live Mahakaleshwar portal.
         </p>
         <div className="hero-ctas">
           <Button variant="primary" to="/tourism">Explore Sacred Places</Button>
-          <Button variant="outline" to="/contact">Plan Your Visit</Button>
+          <Button variant="outline" to="/gallery">View Gallery</Button>
+        </div>
+        <div className="hero-caption-card">
+          <span className="hero-caption-label">Featured View</span>
+          <p>{SLIDES[currentSlide].caption}</p>
         </div>
       </div>
 

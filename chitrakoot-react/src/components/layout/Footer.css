@@ -1,12 +1,7 @@
 .site-footer {
-    background: #5D2906;
-    color: #FFF5EB;
-    padding: 60px 24px 20px;
-}
-
-.footer-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
+    background: linear-gradient(180deg, #7a0f16 0%, #5d2906 100%);
+    color: #fff5eb;
+    padding: 72px 24px 24px;
 }
 
 .footer-grid {
@@ -16,66 +11,41 @@
     margin-bottom: 40px;
 }
 
-/* Footer Column Headings */
 .footer-col h4 {
     font-family: var(--font-heading);
     font-size: 16px;
     font-weight: 600;
-    color: #D4A017;
+    color: #fde68a;
     margin-bottom: 16px;
-    letter-spacing: 0.5px;
 }
 
-/* Brand Column (Column 1) */
 .footer-brand-name {
+    display: block;
     font-family: var(--font-heading);
     font-size: 18px;
     font-weight: 700;
-    color: #FFFFFF;
-    display: block;
-    letter-spacing: 0.2px;
+    color: #fff;
 }
 
 .footer-brand-hindi {
+    display: block;
+    margin: 4px 0 14px;
     font-family: var(--font-hindi);
     font-size: 13px;
     font-weight: 600;
-    color: #FFFFFF;
-    display: block;
-    margin-top: 4px;
-    margin-bottom: 14px;
-}
-
-.footer-col-brand {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-col-brand .logo {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #D4A017;
-    border-radius: 50%;
-    margin-bottom: 14px;
-    object-fit: cover;
+    color: #fff;
 }
 
 .footer-col-brand p {
-    font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 400;
-    color: #D4C5B0;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    color: rgba(255, 247, 237, 0.78);
+    line-height: 1.7;
 }
 
-/* Footer Links */
 .footer-col p,
 .footer-col li {
-    font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 400;
-    color: #FFF5EB;
+    color: #fff5eb;
     line-height: 1.8;
 }
 
@@ -85,76 +55,28 @@
     gap: 8px;
 }
 
-.footer-col a {
-    color: #FFF5EB;
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .footer-col a:hover {
-    color: #D4A017;
+    color: #fde68a;
 }
 
 .footer-col .emergency {
-    color: #D4A017;
+    color: #fde68a;
     font-weight: 600;
 }
 
-/* Footer Bottom */
 .footer-bottom {
     margin-top: 32px;
     padding-top: 20px;
-    border-top: 1px solid #D4A017;
+    border-top: 1px solid rgba(253, 230, 138, 0.35);
     text-align: center;
     font-family: var(--font-ui);
     font-size: 13px;
-    font-weight: 400;
-    color: #D4C5B0;
-    letter-spacing: 0.3px;
+    color: rgba(255, 247, 237, 0.7);
 }
 
-.footer-bottom a {
-    color: #D4A017;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom a:hover {
-    text-decoration: underline;
-}
-
-/* Social Links */
-.footer-socials {
-    display: flex;
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.footer-social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border: 1px solid #D4A017;
-    border-radius: 50%;
-    color: #D4A017;
-    transition: all 0.3s ease;
-}
-
-.footer-social-link:hover {
-    background: #D4A017;
-    color: #5D2906;
-}
-
-/* Responsive */
 @media (max-width: 1024px) {
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-    }
-
-    .site-footer {
-        padding: 50px 20px 20px;
     }
 }
 
@@ -164,58 +86,7 @@
         gap: 28px;
     }
 
-    .footer-col h4 {
-        font-size: 14px;
-        margin-bottom: 12px;
-    }
-
-    .footer-brand-name {
-        font-size: 16px;
-    }
-
-    .footer-brand-hindi {
-        font-size: 12px;
-    }
-
-    .footer-col p,
-    .footer-col li {
-        font-size: 13px;
-    }
-
     .site-footer {
-        padding: 40px 16px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .footer-col h4 {
-        font-size: 13px;
-        margin-bottom: 10px;
-    }
-
-    .footer-brand-name {
-        font-size: 14px;
-    }
-
-    .footer-brand-hindi {
-        font-size: 11px;
-    }
-
-    .footer-col p,
-    .footer-col li {
-        font-size: 12px;
-    }
-
-    .site-footer {
-        padding: 30px 12px 16px;
-    }
-
-    .footer-bottom {
-        font-size: 11px;
+        padding: 48px 16px 20px;
     }
 }

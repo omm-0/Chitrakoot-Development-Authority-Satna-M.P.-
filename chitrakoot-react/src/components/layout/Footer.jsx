@@ -6,14 +6,17 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-col">
+          <div className="footer-col footer-col-brand">
             <span className="footer-brand-name">Chitrakoot Development Authority</span>
             <span className="footer-brand-hindi">चित्रकूट विकास प्राधिकरण</span>
-            <p>The Hill of Many Wonders. Satna District, Madhya Pradesh.</p>
+            <p>
+              A destination portal for pilgrim facilities, tourism information, development
+              updates, and sacred riverfront access across Chitrakoot Dham.
+            </p>
           </div>
 
           <div className="footer-col">
-            <h4>Quick Links</h4>
+            <h4>Explore</h4>
             <ul>
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about/cda">About CDA</Link></li>
@@ -25,7 +28,7 @@ export default function Footer() {
           </div>
 
           <div className="footer-col">
-            <h4>Important Info</h4>
+            <h4>Pilgrim Info</h4>
             <ul>
               <li>Mandakini Aarti: Daily 6:00 PM</li>
               <li>Parikrama: Open All Day</li>
@@ -38,8 +41,8 @@ export default function Footer() {
             <h4>Contact</h4>
             <ul>
               <li>CDA Office, Satna, MP</li>
-              <li>MPSTDC Tourism</li>
-              <li>satna.nic.in</li>
+              <li>Tourism and local development coordination</li>
+              <li>Official district and state departments</li>
               <li>Emergency: <span className="emergency">112</span></li>
             </ul>
           </div>

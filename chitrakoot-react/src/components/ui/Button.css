@@ -1,226 +1,95 @@
 .btn {
-    display: inline-block;
-    font-family: var(--font-ui);
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 12px 28px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: none;
-    text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
     position: relative;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
 }
 
-/* ===== PRIMARY BUTTON — Gold, Filled ===== */
 .btn-primary {
-    background: #D4A017;
-    color: #3B1A04;
-    border: none;
+    background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(122, 15, 22, 0.16);
 }
 
 .btn-primary:hover {
-    background: #E8C55A;
-    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(122, 15, 22, 0.2);
 }
 
-.btn-primary:active {
-    background: #C4970C;
-    transform: translateY(0);
-}
-
-/* ===== SECONDARY BUTTON — Outline, Brown ===== */
 .btn-secondary {
-    background: transparent;
-    border: 2px solid #8B4513;
-    color: #8B4513;
-    padding: 11px 27px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(217, 119, 6, 0.24);
+    color: #7a0f16;
 }
 
 .btn-secondary:hover {
-    background: rgba(139, 69, 19, 0.08);
-    border-color: #D4A017;
-    color: #D4A017;
+    background: rgba(255, 247, 237, 1);
+    border-color: #f59e0b;
 }
 
-.btn-secondary:active {
-    background: rgba(139, 69, 19, 0.15);
-}
-
-/* ===== OUTLINE BUTTON — Light text on dark ===== */
 .btn-outline {
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    color: #FFFFFF;
-    padding: 11px 27px;
+    border: 1px solid rgba(255, 247, 237, 0.74);
+    color: #fff;
+    backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
     background: rgba(255, 255, 255, 0.12);
-    border-color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
-.btn-outline:active {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* ===== OUTLINE DARK BUTTON ===== */
 .btn-outline-dark {
-    background: transparent;
-    color: #5D2906;
-    border: 2px solid #8B4513;
-    padding: 11px 27px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #7a0f16;
+    border: 1px solid rgba(255, 247, 237, 0.6);
 }
 
 .btn-outline-dark:hover {
-    background: #8B4513;
-    color: #FFFFFF;
-    border-color: #8B4513;
+    background: #fff;
+    border-color: #fff;
 }
 
-.btn-outline-dark:active {
-    background: #5D2906;
-    border-color: #5D2906;
-}
-
-/* ===== PILL BUTTON — Special Features ===== */
 .btn-pill {
-    border-radius: 25px;
-    border: 2px solid #8B4513;
-    background: rgba(139, 69, 19, 0.05);
-    color: #5D2906;
-    padding: 9px 20px;
+    border: 1px solid rgba(217, 119, 6, 0.24);
+    background: rgba(255, 247, 237, 0.9);
+    color: #7a0f16;
 }
 
 .btn-pill:hover {
-    background: rgba(139, 69, 19, 0.12);
-    border-color: #D4A017;
-    color: #D4A017;
+    background: rgba(255, 255, 255, 1);
 }
 
-/* ===== LINK BUTTON (Know More style) ===== */
 .btn-link {
-    background: transparent;
-    color: #D4A017;
-    border: none;
-    text-decoration: underline;
     padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #ea580c;
     font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     text-transform: none;
     letter-spacing: 0;
 }
 
 .btn-link:hover {
-    color: #E8C55A;
-    opacity: 0.8;
+    color: #7a0f16;
 }
 
-/* ===== DISABLED STATE ===== */
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* ===== ICON BUTTONS ===== */
-.btn-icon {
-    padding: 8px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ===== BUTTON SIZES ===== */
-.btn-sm {
-    padding: 8px 16px;
-    font-size: 11px;
-    letter-spacing: 1px;
-}
-
-.btn-lg {
-    padding: 14px 36px;
-    font-size: 13px;
-    letter-spacing: 1.6px;
-}
-
-/* ===== BUTTON GROUPS ===== */
-.btn-group {
-    display: flex;
-    gap: 12px;
-}
-
-.btn-group-vertical {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* ===== LOADING STATE ===== */
-.btn.loading {
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-.btn.loading::after {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-left: 8px;
-    border: 2px solid currentColor;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .btn {
         font-size: 11px;
         padding: 10px 24px;
         letter-spacing: 1px;
-    }
-
-    .btn-lg {
-        padding: 12px 32px;
-        font-size: 12px;
-    }
-
-    .btn-sm {
-        padding: 7px 14px;
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .btn {
-        font-size: 11px;
-        padding: 10px 20px;
-    }
-
-    .btn-group {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .btn-group > .btn {
-        width: 100%;
     }
 }

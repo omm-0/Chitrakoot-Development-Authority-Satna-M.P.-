@@ -1,24 +1,24 @@
 .quote-divider {
-    background: #5D2906;
-    padding: 32px vertical;
-    text-align: center;
-    color: #FFF5EB;
-    border-top: 1px solid #D4A017;
-    border-bottom: 1px solid #D4A017;
     min-height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 54px 24px;
+    text-align: center;
+    color: #fff5eb;
+    background: linear-gradient(180deg, #7a0f16 0%, #8b4513 100%);
+    border-top: 1px solid rgba(253, 230, 138, 0.45);
+    border-bottom: 1px solid rgba(253, 230, 138, 0.45);
 }
 
 .quote-line {
     display: block;
-    width: 80px;
+    width: 96px;
     height: 1px;
-    background: #D4A017;
-    opacity: 0.6;
     margin: 0 auto;
+    background: #fde68a;
+    opacity: 0.75;
 }
 
 .quote-line:first-child {
@@ -30,35 +30,21 @@
 }
 
 .quote-text {
-    font-family: var(--font-hindi);
-    color: #D4A017;
-    font-size: 22px;
-    font-weight: 600;
-    font-style: italic;
-    line-height: 1.6;
     max-width: 880px;
     margin: 0 auto;
     padding: 0 24px;
+    font-family: var(--font-hindi);
+    color: #fff7ed;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.6;
 }
 
 .quote-attribution {
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 400;
-    color: #FFFFFF;
     margin-top: 12px;
-    font-style: normal;
+    font-size: 15px;
+    color: #ffffff;
     letter-spacing: 0.3px;
-}
-
-@media (max-width: 1024px) {
-    .quote-divider {
-        padding: 48px 24px;
-    }
-
-    .quote-text {
-        font-size: 20px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -71,46 +57,11 @@
         width: 60px;
     }
 
-    .quote-line:first-child {
-        margin-bottom: 16px;
-    }
-
-    .quote-line:last-child {
-        margin-top: 16px;
-    }
-
     .quote-text {
         font-size: 18px;
     }
 
     .quote-attribution {
         font-size: 13px;
-    }
-}
-
-@media (max-width: 480px) {
-    .quote-divider {
-        padding: 32px 16px;
-    }
-
-    .quote-line {
-        width: 50px;
-        margin: 0 auto 12px;
-    }
-
-    .quote-line:first-child {
-        margin-bottom: 12px;
-    }
-
-    .quote-line:last-child {
-        margin-top: 12px;
-    }
-
-    .quote-text {
-        font-size: 16px;
-    }
-
-    .quote-attribution {
-        font-size: 12px;
     }
 }
