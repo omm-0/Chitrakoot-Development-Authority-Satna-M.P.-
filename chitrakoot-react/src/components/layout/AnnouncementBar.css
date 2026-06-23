@@ -17,19 +17,21 @@
 
 .announcement-track {
     display: inline-flex;
+    align-items: center;
     white-space: nowrap;
-    animation: marquee 6s linear infinite;
-    padding-left: 100%;
-    gap: 40px;
+    width: max-content;
+    animation: marquee 12s linear infinite;
+    will-change: transform;
 }
 
 .announcement-track span {
     margin: 0;
     font-family: var(--font-ui);
     letter-spacing: 0.5px;
+    padding-right: 40px;
 }
 
 @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
